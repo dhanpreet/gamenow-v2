@@ -169,11 +169,12 @@
 									<tr>
 									<th width="14%">Tournament<br> &nbsp; </th>
 										<!-- <th width="10%">Game <br> &nbsp; </th> -->
+                                                                                <th width="14%" class="text-center">Partner<br>&nbsp;</th>
 										<th width="14%">Starts On<br> &nbsp; </th>
 										<!-- <th>Thumbnail <br> &nbsp; </th> -->
-										<th width="14%">Ends on <br>&nbsp;</th>
-										<th width="14%" class="text-center">Partner<br>&nbsp;</th>
+										<th width="14%">Ends on <br>&nbsp;</th>										
 										<th width="14%">Status<br> &nbsp; </th>
+                                                                                <th width="14%">Media upload<br> &nbsp; </th>
 										<th width="14%" class="text-center">Action <br> &nbsp; </th>
 									</tr>
 								</tfoot>

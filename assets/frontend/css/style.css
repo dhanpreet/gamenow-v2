@@ -444,6 +444,48 @@ span.profile-picture > img {
 	border: 0 !important;
 	padding: 20px 20px;
 }
-	
+.ads-style {
+    background-color: #fff;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
+    color: inherit;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    padding: 0;
+    width: 480px;
+    margin: 10px 25px;
+}
+.ads-style .ad_image {
+    position: relative;
+}
+.ad_text {
+    box-sizing: border-box;
+    display: table-cell;
+    padding: 0.5rem 0.5rem 0.5rem 0.7rem;
+    vertical-align: top;
+    width: 75%;
+}
+.ad_action {
+    text-align: center;
+    box-sizing: border-box;
+    display: table-cell;
+    padding: 10px 5px 10px 30px;
+    vertical-align: top;
+    width: 25%;
+}
+.ads-style .btn {
+    background-color: #d71920;
+    border-radius: 0.125rem;
+    color: #fff;
+    white-space: nowrap;
+}
+.ad_action_text {
+    opacity: .6;
+    display: block;
+    font-size: 75%;
+    line-height: 1;
+    padding-top: 0.5rem;
+}
 	
 	

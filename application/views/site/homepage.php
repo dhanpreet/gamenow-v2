@@ -336,6 +336,22 @@
 		<!-- End Menu -->
 		<div class="tab-content">
 		<div id="for-you" class="tab-pane fade in active">
+                    
+                    <!-- Advertisement 1 -->
+                    <div class="row ads-style">
+                        <div class="ad_image">
+                            <img src="<?php echo base_url('uploads/ads/ad1.webp') ?>"/>
+                        </div>                        
+                        <div class="ad_text">
+                            <h4>Win Rs 50,000 Daraz Shopping Coupons</h4>
+                            <p>Try 1 Day FREE &amp; No Internet Charges</p>
+                        </div>
+                        <div class="ad_action">
+                            <div class="btn">Play Now</div>
+                            <small class="ad_action_text">GameNow Premier League (GPL)</small>
+                        </div>
+                    </div>
+                    
 		<!-- <div class="row">
 			<div class="glider-contain">
 				<div class="glider-0">
@@ -424,6 +440,20 @@
 		<!-- End Single Banner -->
 		
 		
+                <!-- Advertisement 2 -->
+                    <div class="row ads-style">
+                        <div class="ad_image">
+                            <img src="<?php echo base_url('uploads/ads/ad2.webp') ?>"/>
+                        </div>                        
+                        <div class="ad_text">
+                            <h4>Games Club</h4>
+                            <p>1 day FREE trial</p>
+                        </div>
+                        <div class="ad_action">
+                            <div class="btn">Play Now</div>
+                        </div>
+                    </div>
+                    
 		
 		<?php if(is_array(@$miniGamesBanners[0]) && count(@$miniGamesBanners[0])> 0){ ?>	
 		<div class="row">
@@ -569,6 +599,21 @@
 			</div>
 		</div>
 		<!-- End Section -->
+                
+                <!-- Advertisement 3 -->
+                    <div class="row ads-style">
+                        <div class="ad_image">
+                            <img src="<?php echo base_url('uploads/ads/ad3.webp') ?>"/>
+                        </div>                        
+                        <div class="ad_text">
+                            <h4>Game World</h4>
+                            <p>1 day free trial</p>
+                        </div>
+                        <div class="ad_action">
+                            <div class="btn">Play Now</div>
+                        </div>
+                    </div>
+                    
 		
 		<div class="row">
 			<div class="heading">
@@ -659,7 +704,7 @@
 			</div>
 		</div>
 		<?php } ?>
-		
+                
 		
 		<!-- End Section -->
 		<!-- <div class="footer-strip">
@@ -672,6 +717,21 @@
 
 
 		<div id="top-chart" class="tab-pane fade">
+                    
+                    <!-- Advertisement 4 -->
+                    <div class="row ads-style">
+                        <div class="ad_image">
+                            <img src="<?php echo base_url('uploads/ads/ad4.webp') ?>"/>
+                        </div>                        
+                        <div class="ad_text">
+                            <h4>Lystn</h4>
+                            <p>Unlimited podcasts and radio</p>
+                        </div>
+                        <div class="ad_action">
+                            <div class="btn">Try Now!</div>
+                        </div>
+                    </div>
+                    
 			<div class="top-chart-content" style="margin-top: 30px;">
 			
 				<?php if(is_array(@$topChartGames) && count(@$topChartGames)> 0){ ?>
@@ -698,6 +758,22 @@
 		
 		
 	<div id="popular" class="tab-pane fade">
+            
+            <!-- Advertisement 5 -->
+            <div class="row ads-style">
+                <div class="ad_image">
+                    <img src="<?php echo base_url('uploads/ads/ad5.webp') ?>"/>
+                </div>                        
+                <div class="ad_text">
+                    <h4>Magical English</h4>
+                    <p>Powered By Disney</p>
+                </div>
+                <div class="ad_action">
+                    <div class="btn">Try Now!</div>
+                    <small class="ad_action_text">Free Trial</small>
+                </div>
+            </div>
+            
 		<?php if(!empty($pageBanners[4]['game_play_link'])){ ?>
 		<div class="row">
 			<a href="<?php echo @$pageBanners[4]['game_play_link'] ?>">
@@ -761,6 +837,20 @@
 	<!-- End Section -->
 	
 	<div id="premium" class="tab-pane fade">
+            
+            <!-- Advertisement 6 -->
+            <div class="row ads-style">
+                <div class="ad_image">
+                    <img src="<?php echo base_url('uploads/ads/ad6.webp') ?>"/>
+                </div>                        
+                <div class="ad_text">
+                    <h4>JAZZ GAME ZONE</h4>
+                    <p>No ads, no in-app purchases, try 1 day free</p>
+                </div>
+                <div class="ad_action">
+                    <div class="btn">Play Now</div>
+                </div>
+            </div>
 		
 		<!-- <div class="row">
 			<?php $fCount=1;  foreach($fullTournamentGamesBanners as $rowFullTournament){ ?>

@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body, p{
+	font-family: 'Mulish', sans-serif !important;
+}
+
+
+img
+{
+  max-width: 100%;
+}
+@media screen and (min-width:767px)
+{
+	.main-wrapper
+	{
+		display: none;
+		background: #202123;
+	}
+}
+.main-wrapper
+{
+	background: #202123;
+	max-width: 450px;
+	margin:auto;
+	padding-bottom: 10px;
+}
+.header-strip
+{
+	text-align: center;
+	padding-top: 10px;
+    position: relative;
+}
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #030104;
+    max-width: 100% !important;
+    height: 100vh;
+    /* change if the mask should have another color then white */
+    z-index: 99;
+    /* makes sure it stays on top */
+  }
+
+  #status {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    /* centers the loading animation horizontally one the screen */
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* centers the loading animation vertically one the screen */
+    background-image: url("../img/loader-game.gif");
+    background-position: center;
+    /* path to your loading animation */
+    /*background-repeat: no-repeat;
+    
+    margin: -100px 0 0 -100px;*/
+    /* is width and height divided by two */
+  }
+span.open-sidebar > img
+{
+    width: 30px;
+}
+span.open-sidebar
+{
+    position: absolute;
+    top: 18px;
+    left: 10px;
+}
+.heading {
+    padding: 30px 10px;
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+}
+.slide-menu.glider.draggable .glider-slide 
+{
+  min-width: unset !important;
+}
+a.nav-menu.current {
+        border-bottom: 2px solid #f5c001 !important;
+    color: #f5c001 !important;
+}
+.slide-menu.glider.draggable .glider-slide a {
+    
+    line-height: 3;
+    text-align: center;
+    padding: 10px 2px;
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+}
+.slide-menu.glider.draggable .glider-slide a
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+.slide-menu.glider.draggable span.glider-slide.current 
+{
+    border-bottom: 2px solid #fff;
+}
+
+
+.glider-0 {
+    margin-top: 20px !important;
+}
+.glider-0 .glider-slide, .glider-4 .glider-slide{
+	position: relative !important;
+}
+.play-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-left: 5px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #fff;
+}
+.heading > h3
+{
+	margin: 0px; 
+	font-size: 16px;
+	    color: #dedede;
+}
+.block
+{
+	display: block;
+}
+.glider-contain 
+{
+    width: 100%;
+    max-width: 997px;
+    margin: 0 auto;
+}
+.glider-slide {
+    margin: 0px 10px;
+}
+.glider-slide > img {
+    border-radius: 20px;
+}
+span.game-name {
+    display: block;
+        color: #dedede;
+    padding: 6px 0;
+}
+.btn-game {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 100%;
+    border-radius: 2px;
+    color: #d11820;
+    font-weight: 600;
+    padding: 4px;
+}
+span.head-desc {
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    color: #808080;
+}
+.thumbnails
+{
+	margin-bottom: 10px;
+}
+.thumbnails h3
+{
+	margin:0px;
+	color: #fff; 
+	font-size: 14px;
+}
+.thumbnails img
+{
+	border-radius: 10px;
+  max-width: 100%;
+}
+.thumbnails i
+{
+	bottom: 8px;
+    right: 8px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding-left: 3px;
+    line-height: 24px;
+    font-size: 10px;
+    color: #fff;
+}
+.row.thumbnails > div.col-xs-3 {
+    padding-right: 0px;
+}
+.glider::-webkit-scrollbar {
+  display: none;
+}
+.single-banner {
+    margin: 20px 10px;
+    margin-top: 30px;
+}
+.single-banner img {
+    border-radius: 20px;
+}
+.footer-strip {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background: #202123;
+    padding: 10px;
+    box-shadow: 0px 0px 10px #211414;
+    color: #fff;
+}
+.footer-strip > span.col-xs-6
+{
+	text-align: center;
+}
+.footer-strip > span.col-xs-6:first-child
+{
+	    border-right: 1px solid;
+}
+
+#search {
+    text-align: center;
+    margin: 10px;
+}
+
+#search input[type="text"] {
+    background: url(../img/search-dark.png) no-repeat 10px 13px #444;
+    border: 0 none;
+    
+    color: #777;
+    width: 280px;
+    padding: 10px 15px 10px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 2px rgb(0 0 0 / 30%);
+    -webkit-box-shadow: 0 1px 0 rgb(255 255 255 / 10%), 0 1px 3px rgb(0 0 0 / 20%) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 10%), 0 1px 3px rgb(0 0 0 / 20%) inset;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    font-size: 14px;
+    outline: none;
+    }
+
+#search input[type="text"]:focus {
+    width: 340px;
+    }
+
+    /*Sidebar*/
+    .sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  display:none;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: #1d1c1c;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 80px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 2px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav ul{
+ margin-left:-20px;
+}
+
+.sidenav ul li {
+ list-style:none;
+}
+
+.menu-item{
+	width:30px;
+}
+
+.sidenav a:hover, .sidenav ul li > .active {
+  color: #f5c001;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+.sidebar-head {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+.sidebar-head > .pull-left:nth-child(2) {
+    padding:4px;
+  }
+  .sidebar-head > .pull-left:nth-child(2) {
+    padding: 10px;
+    padding-top: 13px;
+    color: #fff;
+    font-size: 16px;
+}
+.top-chart-content
+{
+  margin-top: 10px;
+}
+.profile-picture
+{
+     position: absolute;
+    top: 14px;
+    right: 10px;
+}
+span.profile-picture > img {
+    width: 44px;
+}
+
+.menu-profile-picture, .profile-picture {
+	
+	border:1px solid #f5c001; border-radius: 50%;
+}
+
+
+
+/*  **************************  For Modal Style  *********************   */
+	.modal{
+		margin-top: 25%;
+	}
+	.modal-bg{
+		border-radius: 10px 10px 10px 10px;
+		color:#fff;	
+		background: #2b2b2b;	
+	}
+	
+	.modal-header {
+		padding: 10px !important;
+		border-bottom: none !important;
+	}
+	.modal-backdrop{
+		opacity:0.85 !important;
+	}
+	
+	.btn-custom-dark{
+		background:#2b2b2b;
+		color:#fff;
+		width:60%;
+		padding:10px 20px;
+		border-radius:20px;
+	}
+	.btn-custom-light{
+		background:#fff;
+		color:#2b2b2b;
+		width:75%;
+		padding:10px 20px;
+		border-radius:20px;
+		
+	}
+	.btn-custom-facebook, .btn-custom-facebook:hover{
+		background:#4267B2;
+		color:#fff;
+		width:75%;
+		padding:10px 20px;
+		border-radius:20px;
+	}
+.col-xs-12.game-name {
+    padding-top: 8px;
+}	
+	
+	
+	

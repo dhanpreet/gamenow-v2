@@ -367,6 +367,7 @@ class Site extends CI_Controller {
 		//	$data['pageBannersGIF'] = $this->SITEDBAPI->getPublishedPageBannersGIF($limit=3);
 			
 			$freeGamesBanners = $this->SITEDBAPI->getPublishedFreeGames($limit=30);
+                        $data['freeGames'] = $freeGamesBanners;
 			$data['freeGamesBanners'] = array_chunk($freeGamesBanners, 3, true);
 			
 			$miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
@@ -383,6 +384,8 @@ class Site extends CI_Controller {
 			$data['mostlyPlayedGamesBanners'] = $this->SITEDBAPI->getPublishedMostlyPlayedGames($limit=10);
 			
 			$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
+                        
+                        $data['ads_list'] = $this->SITEDBAPI->getAds($limit=100);
 			
 			$this->load->view('site/homepage', $data);
 		} else {

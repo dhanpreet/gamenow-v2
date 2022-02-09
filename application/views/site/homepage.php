@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/fontawesome-5.15.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/fontawesome-5.15.1/css/brands.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/css/glider.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/css/spin_wheel.css" />
 <script src="<?php echo base_url() ?>assets/frontend/js/jquery.js"></script>
 <script src="<?php echo base_url() ?>assets/frontend/js/bootstrap.js"></script>
 <script src="<?php echo base_url() ?>assets/frontend/js/glider.js"></script>
@@ -325,7 +326,7 @@
 			<div class="glider-contain">
 				<div class="slide-menu">
 					<span><a class="nav-menu current" data-toggle="tab" href="#for-you"> For You</a></span>
-					<span><a class="nav-menu" data-toggle="tab" href="#top-chart"> Top Chart</a></span>
+					<span><a class="nav-menu" data-toggle="tab" href="#free-games">Free Games</a></span>
 					<span><a class="nav-menu" data-toggle="tab" href="#popular"> Popular</a></span>
 					<span><a class="nav-menu" data-toggle="tab" href="#premium"> Tournaments</a></span>
 						
@@ -716,7 +717,7 @@
 
 
 
-		<div id="top-chart" class="tab-pane fade">
+		<div id="free-games" class="tab-pane fade">
                     
                     <!-- Advertisement 4 -->
                     <div class="row ads-style">
@@ -732,18 +733,18 @@
                         </div>
                     </div>
                     
-			<div class="top-chart-content" style="margin-top: 30px;">
+			<div class="free-games-content" style="margin-top: 30px;">
 			
-				<?php if(is_array(@$topChartGames) && count(@$topChartGames)> 0){ ?>
-					<?php $tCount=1; foreach($topChartGames as $rowTopChart){ ?>
-						<a href="<?php echo $rowTopChart['game_play_link'] ?>">
+				<?php if(is_array(@$freeGames) && count(@$freeGames)> 0){ ?>
+					<?php $tCount=1; foreach($freeGames as $rowfreeGame){ ?>
+                                                <a href="<?php echo $rowfreeGame['game_play_link'] ?>" class="play_game_link">
 							<div class="row thumbnails">
-								<?php if(!empty($rowTopChart['img_gif_link']) && $tCount%3 == 0){ ?>
-									<div class="col-xs-3"><img alt="<?php echo $rowTopChart['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowTopChart['img_gif_link']) ?>"></div>
+								<?php if(!empty($rowfreeGame['img_gif_link']) && $tCount%3 == 0){ ?>
+									<div class="col-xs-3"><img alt="<?php echo $rowfreeGame['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowfreeGame['img_gif_link']) ?>"></div>
 								<?php } else { ?>
-									<div class="col-xs-3"><img alt="<?php echo $rowTopChart['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowTopChart['img_link']) ?>"></div>
+									<div class="col-xs-3"><img alt="<?php echo $rowfreeGame['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowfreeGame['img_link']) ?>"></div>
 								<?php } ?>
-								<div class="col-xs-7"><h3><?php echo $rowTopChart['game_name'] ?></h3><span class="head-desc">Available offline</span></div>
+								<div class="col-xs-7"><h3><?php echo $rowfreeGame['game_name'] ?></h3><span class="head-desc">Available offline</span></div>
 								<div class="col-xs-2"><i class="fa fa-play"></i></div>
 							</div>
 						</a>
@@ -992,6 +993,200 @@
 	
 </div>
 
+
+<!-- Ad Modal -->
+<div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-bg modal-bg-custom" align="center">
+            <div class="modal-header">
+                <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:#fff;">&times;</span>
+                </button-->
+            </div>
+            <div class="modal-body">
+                <div class="row ads-style">
+                    <div class="ad_image">
+                        <img src="" id="ad_image"/>
+                    </div>                        
+                    <div class="ad_text">
+                        <h4 id="ad_main_text"></h4>
+                        <p id="ad_mini_text"></p>
+                    </div>
+                    <div class="ad_action">
+                        <div class="btn" id="ad_btn_text"></div>
+                        <div id="ad_action_text"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-none">
+                <span class="game_timer"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Spin Wheel Modal -->
+<div class="modal fade" id="spinWheelModal" tabindex="-1" role="dialog" aria-labelledby="spinWheelModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-bg modal-bg-custom" align="center">
+            <div class="modal-header">
+                <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:#fff;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mainbox" id="mainbox">
+                    <div class="box" id="box">
+                        <div class="box1">
+                            <span class="font span1"><b>Samsung Tab A6</b></span>
+                            <span class="font span2"><b>JBL Speaker</b></span>
+                            <span class="font span3"><b>Magic Roaster</b></span>
+                            <span class="font span4"><b>Sepeda Aviator</b></span>
+                            <span class="font span5"><b>Rice Cooker <br /> Philips</b></span>
+                        </div>
+                        <div class="box2">
+                            <span class="font span1"><b>Lunch Box Lock&Lock</b></span>
+                            <span class="font span2"><b>Air Cooler <br /> Sanken</b></span>
+                            <span class="font span3"><b>Ipad Mini 4</b></span>
+                            <span class="font span4"><b>Exclusive Gift</b></span>
+                            <span class="font span5"><b>Electrolux <br /> Blender</b></span>
+                        </div>
+                    </div>
+                    <button class="spin" onclick="spin()">SPIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio controls="controls" id="applause" src="<?php echo base_url() ?>assets/frontend/sounds/applause.mp3" type="audio/mp3"></audio>
+<audio controls="controls" id="wheel" src="<?php echo base_url() ?>assets/frontend/sounds/wheel.mp3" type="audio/mp3"></audio>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+    function getRndAd(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    
+    $(document).on('click', '.play_game_link', function(e) {
+        e.preventDefault();
+        var game_play_link = $(this).attr('href');
+        console.log(game_play_link);
+        
+        var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
+        var total_ads = ads.length;
+        var random_ad = getRndAd(1, total_ads);
+        var random_ad_detail = ads[random_ad];
+        console.log(random_ad_detail);
+        
+        
+        var image_src = "<?php echo base_url('uploads/ads/') ?>"+random_ad_detail.ad_image_link;
+        $('#ad_image').attr('src', image_src);
+        $('#ad_main_text').text(random_ad_detail.ad_text_main);
+        $('#ad_mini_text').text(random_ad_detail.ad_text_mini);
+        $('#ad_btn_text').text(random_ad_detail.ad_btn_text);
+        $('#ad_action_text').text(random_ad_detail.ad_action_text);
+
+        var timer = 5;
+        $('.game_timer').text("Game starts in "+ timer + " Seconds");
+        $('#adModal').modal('show');
+
+        setInterval(function() {
+            $('.game_timer').text("Game starts in "+ timer + " Seconds");
+            timer--;
+        }, 1000);
+        setTimeout(() => {
+            $('#adModal').modal('hide');
+            //window.location = game_play_link;
+        }, 5000);
+
+    });
+});
+</script>
+
+<!-- Spin And Win Wheel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+function shuffle(array) {
+    var currentIndex = array.length,
+    randomIndex;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+        ];
+    }
+    return array;
+}
+
+function spin() {
+    $('.spin_wheel_close').attr('disabled', 'disabled');
+    // Play the sound
+    wheel.play();
+    const box = document.getElementById("box");
+    const element = document.getElementById("mainbox");
+    let SelectedItem = "";
+    let MagicRoaster = shuffle([1890, 2250, 2610]);
+    let Sepeda = shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
+    let RiceCooker = shuffle([1810, 2170, 2530]);
+    let LunchBox = shuffle([1770, 2130, 2490]);
+    let Sanken = shuffle([1750, 2110, 2470]);
+    let Electrolux = shuffle([1630, 1990, 2350]);
+    let JblSpeaker = shuffle([1570, 1930, 2290]);
+    let Hasil = shuffle([
+        MagicRoaster[0],
+        Sepeda[0],
+        RiceCooker[0],
+        LunchBox[0],
+        Sanken[0],
+        Electrolux[0],
+        JblSpeaker[0],
+    ]);
+    // console.log(Hasil[0]);
+    // get the value of selected item
+    if (MagicRoaster.includes(Hasil[0])) SelectedItem = "Magic Roaster";
+    if (Sepeda.includes(Hasil[0])) SelectedItem = "Sepeda Aviator";
+    if (RiceCooker.includes(Hasil[0])) SelectedItem = "Rice Cooker Philips";
+    if (LunchBox.includes(Hasil[0])) SelectedItem = "Lunch Box Lock&Lock";
+    if (Sanken.includes(Hasil[0])) SelectedItem = "Air Cooler Sanken";
+    if (Electrolux.includes(Hasil[0])) SelectedItem = "Electrolux Blender";
+    if (JblSpeaker.includes(Hasil[0])) SelectedItem = "JBL Speaker";
+    // spin
+    box.style.setProperty("transition", "all ease 5s");
+    box.style.transform = "rotate(" + Hasil[0] + "deg)";
+    element.classList.remove("animate");
+    setTimeout(function () {
+        element.classList.add("animate");
+    }, 5000);
+    // alert
+    setTimeout(function () {
+        $('#spinWheelModal').modal('hide');
+        $('.spin_wheel_close').removeAttr('disabled');
+        applause.play();
+        swal(
+            "Congratulations",
+            "You Won The " + SelectedItem + ".",
+            "success"
+        );
+    }, 5500);
+    // delay
+    setTimeout(function () {
+        box.style.setProperty("transition", "initial");
+        box.style.transform = "rotate(90deg)";
+    }, 6000);
+}
+
+$('.spin_wheel').click(function() {
+    $('#spinWheelModal').modal('show');
+});
+</script>
 
 <script>
 $(document).ready(function(){

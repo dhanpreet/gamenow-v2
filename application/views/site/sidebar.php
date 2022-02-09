@@ -75,6 +75,10 @@ $sessionPhone = @$this->session->userdata('user_phone');
 					</span>
 				</a>
 			<?php } ?>
+        
+        <span class="pull-right">
+            <img id="spin_wheel" class="spin_wheel" src="<?php echo base_url() ?>assets/frontend/img/spin_wheel.png" width="44">
+        </span>
 		
 		
 		

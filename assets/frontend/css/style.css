@@ -448,13 +448,13 @@ span.profile-picture > img {
     background-color: #fff;
     border-radius: 0.25rem;
     box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
-    color: inherit;
+    color: #000;
     display: block;
     overflow: hidden;
     text-align: left;
     padding: 0;
-    width: 480px;
-    margin: 10px 25px;
+    width: 100%;
+    margin: 10px 0px;
 }
 .ads-style .ad_image {
     position: relative;
@@ -488,4 +488,35 @@ span.profile-picture > img {
     padding-top: 0.5rem;
 }
 	
+@media screen and (min-width:500px)
+{
+    .ads-style {
+        width: 80%;
+        margin: 10px auto;
+    }
+}
 	
+.border-top-none {
+    border-top: none;
+}
+
+
+.roulette_center {
+    position: absolute;
+    top: 255px;
+    left: 258px;
+    cursor: pointer;
+
+}
+.roulette_center:hover {
+  transform: scale(1.01);
+
+}
+
+.roulette_wheel{
+  touch-action:auto;pointer-events:painted;
+}
+
+.display-inline {
+    display: inline;
+}

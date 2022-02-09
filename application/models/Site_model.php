@@ -243,7 +243,15 @@ class Site_model extends CI_Model {
         return $this->db->get()->result_array();
 	}
 	
-	
+	// Manage Ads
+        public function getAds($limit){
+            $this->db->select("*", FALSE);
+            $this->db->from('ads'); 
+            $this->db->where('status', 1);
+            $this->db->limit($limit);
+            return $this->db->get()->result_array();
+        }
+        
 }  
 
 ?>

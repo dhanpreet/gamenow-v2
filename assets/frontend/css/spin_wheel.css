@@ -33,11 +33,13 @@
   left: 0px;
 }
 .span1 {
-  clip-path: polygon(0 17%, 0 50%, 50% 50%);
+  clip-path: polygon(0 17%, 0 50%, 50% 50%); 
+  clip-path: polygon(0 17%, 0 70%, 50% 50%);
   background-color: green;
 }
 .span2 {
   clip-path: polygon(0 17%, 30% 0, 50% 50%);
+  clip-path: polygon(0 17%, 40% 0, 50% 50%);
   background-color: red;
 }
 .span3 {
@@ -236,10 +238,67 @@ audio {
     }
 }
 
+@media (min-width: 500px) {
+    .box {
+        width: 85%;
+    }
+    .mainbox {
+        height: 430px;
+    }
+    
+    .box1 .span1 b {
+        top: 80%;
+        right: 43%;
+        transform: rotate(-170deg);
+    }
+    .box1 .span2 b {
+        top: 46%;
+        right: 68%;
+        transform: rotate(-90deg);
+    }
+    .box1 .span3 b {
+        top: 15%;
+        right: 55%;
+        transform: rotate(-90deg);
+    }
+    .box2 .span1 b {
+        top: 65%;
+        right: 65%;
+        left: 15%;
+        transform: rotate(50deg);
+    }
+    .box2 .span2 b {
+        top: 27%;
+        right: 66%;
+        transform: rotate(-240deg);
+    }
+}
+
 
 .spin_wheel {
     position: relative;
     right: 65px;
     top: 4px; 
     cursor: pointer;
+}
+
+.box1 .span1 {
+    clip-path: polygon(4% 86%, 120% 221%, 50% 50%);
+    background-color: yellow;
+}
+.box1 .span2 {
+    clip-path: polygon(0% 90%, 0% -2%, 50% 50%);
+    background-color: red;
+}
+.box1 .span3 {
+    clip-path: polygon(-20% 0%, 120% 0, 50% 50%);
+    background-color: blue;
+}
+.box2 .span1 {
+    clip-path: polygon(-5% 51%, 16% 210%, 50% 50%);
+    background-color: green;
+}
+.box2 .span2 {
+    clip-path: polygon(-451% 125%, 30% 0%, 50% 50%);
+    background-color: deeppink;
 }

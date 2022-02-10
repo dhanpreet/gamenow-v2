@@ -337,19 +337,33 @@
 		<!-- End Menu -->
 		<div class="tab-content">
 		<div id="for-you" class="tab-pane fade in active">
-                    
+                    <?php 
+                        $ads_to_show = $ads_list;
+                    ?>
                     <!-- Advertisement 1 -->
+                    <?php 
+                        if(count($ads_to_show) > 1) {
+                            $random_ad = array_rand($ads_to_show, 1); 
+                            unset($ads_to_show[$random_ad]);
+                        }
+                        else {
+                            $left_ad_id = array_keys($ads_to_show);
+                            $random_ad = $left_ad_id[0];
+                        }
+                        //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+                    ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <img src="<?php echo base_url('uploads/ads/ad1.webp') ?>"/>
+                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
-                            <h4>Win Rs 50,000 Daraz Shopping Coupons</h4>
-                            <p>Try 1 Day FREE &amp; No Internet Charges</p>
+                            <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                            <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn">Play Now</div>
-                            <small class="ad_action_text">GameNow Premier League (GPL)</small>
+                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
                     
@@ -442,16 +456,29 @@
 		
 		
                 <!-- Advertisement 2 -->
+                    <?php 
+                        if(count($ads_to_show) > 1) {
+                            $random_ad = array_rand($ads_to_show, 1); 
+                            unset($ads_to_show[$random_ad]);
+                        }
+                        else {
+                            $left_ad_id = array_keys($ads_to_show);
+                            $random_ad = $left_ad_id[0];
+                        }
+                        //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+                    ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <img src="<?php echo base_url('uploads/ads/ad2.webp') ?>"/>
+                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
-                            <h4>Games Club</h4>
-                            <p>1 day FREE trial</p>
+                            <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                            <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn">Play Now</div>
+                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
                     
@@ -602,16 +629,29 @@
 		<!-- End Section -->
                 
                 <!-- Advertisement 3 -->
+                    <?php 
+                        if(count($ads_to_show) > 1) {
+                            $random_ad = array_rand($ads_to_show, 1); 
+                            unset($ads_to_show[$random_ad]);
+                        }
+                        else {
+                            $left_ad_id = array_keys($ads_to_show);
+                            $random_ad = $left_ad_id[0];
+                        }
+                        //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+                    ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <img src="<?php echo base_url('uploads/ads/ad3.webp') ?>"/>
+                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
-                            <h4>Game World</h4>
-                            <p>1 day free trial</p>
+                            <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                            <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn">Play Now</div>
+                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
                     
@@ -720,16 +760,29 @@
 		<div id="free-games" class="tab-pane fade">
                     
                     <!-- Advertisement 4 -->
+                    <?php 
+                        if(count($ads_to_show) > 1) {
+                            $random_ad = array_rand($ads_to_show, 1); 
+                            unset($ads_to_show[$random_ad]);
+                        }
+                        else {
+                            $left_ad_id = array_keys($ads_to_show);
+                            $random_ad = $left_ad_id[0];
+                        }
+                        //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+                    ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <img src="<?php echo base_url('uploads/ads/ad4.webp') ?>"/>
+                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
-                            <h4>Lystn</h4>
-                            <p>Unlimited podcasts and radio</p>
+                            <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                            <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn">Try Now!</div>
+                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
                     
@@ -761,17 +814,29 @@
 	<div id="popular" class="tab-pane fade">
             
             <!-- Advertisement 5 -->
+            <?php 
+                if(count($ads_to_show) > 1) {
+                    $random_ad = array_rand($ads_to_show, 1); 
+                    unset($ads_to_show[$random_ad]);
+                }
+                else {
+                    $left_ad_id = array_keys($ads_to_show);
+                    $random_ad = $left_ad_id[0];
+                }
+                //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+            ?>
             <div class="row ads-style">
                 <div class="ad_image">
-                    <img src="<?php echo base_url('uploads/ads/ad5.webp') ?>"/>
+                    <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                    <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                 </div>                        
                 <div class="ad_text">
-                    <h4>Magical English</h4>
-                    <p>Powered By Disney</p>
+                    <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                    <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                 </div>
                 <div class="ad_action">
-                    <div class="btn">Try Now!</div>
-                    <small class="ad_action_text">Free Trial</small>
+                    <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                    <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                 </div>
             </div>
             
@@ -840,16 +905,29 @@
 	<div id="premium" class="tab-pane fade">
             
             <!-- Advertisement 6 -->
+            <?php 
+                if(count($ads_to_show) > 1) {
+                    $random_ad = array_rand($ads_to_show, 1); 
+                    unset($ads_to_show[$random_ad]);
+                }
+                else { 
+                    $left_ad_id = array_keys($ads_to_show);
+                    $random_ad = $left_ad_id[0];
+                }
+                //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
+            ?>
             <div class="row ads-style">
                 <div class="ad_image">
-                    <img src="<?php echo base_url('uploads/ads/ad6.webp') ?>"/>
+                    <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                    <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                 </div>                        
                 <div class="ad_text">
-                    <h4>JAZZ GAME ZONE</h4>
-                    <p>No ads, no in-app purchases, try 1 day free</p>
+                    <h4><?php echo $ads_list[$random_ad]['ad_text_main']; ?></h4>
+                    <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                 </div>
                 <div class="ad_action">
-                    <div class="btn">Play Now</div>
+                    <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                    <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                 </div>
             </div>
 		
@@ -1034,23 +1112,19 @@
                 <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color:#fff;">&times;</span>
                 </button>
+                <h4>Win Free Subscription</h4>
             </div>
             <div class="modal-body">
                 <div class="mainbox" id="mainbox">
                     <div class="box" id="box">
                         <div class="box1">
-                            <span class="font span1"><b>Samsung Tab A6</b></span>
-                            <span class="font span2"><b>JBL Speaker</b></span>
-                            <span class="font span3"><b>Magic Roaster</b></span>
-                            <span class="font span4"><b>Sepeda Aviator</b></span>
-                            <span class="font span5"><b>Rice Cooker <br /> Philips</b></span>
+                            <span class="font span1"><b>Games World</b></span>
+                            <span class="font span2"><b>Games Club</b></span>
+                            <span class="font span3"><b>Lystn</b></span>
                         </div>
                         <div class="box2">
-                            <span class="font span1"><b>Lunch Box Lock&Lock</b></span>
-                            <span class="font span2"><b>Air Cooler <br /> Sanken</b></span>
-                            <span class="font span3"><b>Ipad Mini 4</b></span>
-                            <span class="font span4"><b>Exclusive Gift</b></span>
-                            <span class="font span5"><b>Electrolux <br /> Blender</b></span>
+                            <span class="font span1"><b>Magical English</b></span>
+                            <span class="font span2"><b>Jazz Game <br /> Zone</b></span>
                         </div>
                     </div>
                     <button class="spin" onclick="spin()">SPIN</button>
@@ -1100,7 +1174,7 @@ $(document).ready(function(){
         }, 1000);
         setTimeout(() => {
             $('#adModal').modal('hide');
-            //window.location = game_play_link;
+            window.location = game_play_link;
         }, 5000);
 
     });
@@ -1133,31 +1207,25 @@ function spin() {
     const box = document.getElementById("box");
     const element = document.getElementById("mainbox");
     let SelectedItem = "";
-    let MagicRoaster = shuffle([1890, 2250, 2610]);
-    let Sepeda = shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
-    let RiceCooker = shuffle([1810, 2170, 2530]);
-    let LunchBox = shuffle([1770, 2130, 2490]);
-    let Sanken = shuffle([1750, 2110, 2470]);
-    let Electrolux = shuffle([1630, 1990, 2350]);
-    let JblSpeaker = shuffle([1570, 1930, 2290]);
+    let GamesWorld = shuffle([1890, 2250, 2610]);
+    let GamesClub = shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
+    let Lystn = shuffle([1810, 2170, 2530]);
+    let MagicalEnglish = shuffle([1770, 2130, 2490]);
+    let JazzGameZone = shuffle([1750, 2110, 2470]);
     let Hasil = shuffle([
-        MagicRoaster[0],
-        Sepeda[0],
-        RiceCooker[0],
-        LunchBox[0],
-        Sanken[0],
-        Electrolux[0],
-        JblSpeaker[0],
+        GamesWorld[0],
+        GamesClub[0],
+        Lystn[0],
+        MagicalEnglish[0],
+        JazzGameZone[0],
     ]);
     // console.log(Hasil[0]);
     // get the value of selected item
-    if (MagicRoaster.includes(Hasil[0])) SelectedItem = "Magic Roaster";
-    if (Sepeda.includes(Hasil[0])) SelectedItem = "Sepeda Aviator";
-    if (RiceCooker.includes(Hasil[0])) SelectedItem = "Rice Cooker Philips";
-    if (LunchBox.includes(Hasil[0])) SelectedItem = "Lunch Box Lock&Lock";
-    if (Sanken.includes(Hasil[0])) SelectedItem = "Air Cooler Sanken";
-    if (Electrolux.includes(Hasil[0])) SelectedItem = "Electrolux Blender";
-    if (JblSpeaker.includes(Hasil[0])) SelectedItem = "JBL Speaker";
+    if (GamesWorld.includes(Hasil[0])) SelectedItem = "Games World";
+    if (GamesClub.includes(Hasil[0])) SelectedItem = "Games Club";
+    if (Lystn.includes(Hasil[0])) SelectedItem = "Lystn";
+    if (MagicalEnglish.includes(Hasil[0])) SelectedItem = "Magical English";
+    if (JazzGameZone.includes(Hasil[0])) SelectedItem = "Jazz Game Zone";
     // spin
     box.style.setProperty("transition", "all ease 5s");
     box.style.transform = "rotate(" + Hasil[0] + "deg)";
@@ -1170,11 +1238,18 @@ function spin() {
         $('#spinWheelModal').modal('hide');
         $('.spin_wheel_close').removeAttr('disabled');
         applause.play();
-        swal(
-            "Congratulations",
-            "You Won The " + SelectedItem + ".",
-            "success"
-        );
+        
+        var msg = "You won free subscription for <a href='https://business.igpl.pro/'> " + SelectedItem + "</a>.";
+        
+        var htmlContent = document.createElement("div");
+        htmlContent.innerHTML = msg;
+        
+        swal({
+            title: "Congratulations",
+            content: htmlContent,
+            type: "success",
+            html: true,
+        });
     }, 5500);
     // delay
     setTimeout(function () {

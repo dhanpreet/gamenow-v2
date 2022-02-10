@@ -252,6 +252,13 @@ class Site_model extends CI_Model {
             return $this->db->get()->result_array();
         }
         
+        public function getAdsImages($limit){
+            $this->db->select("*", FALSE);
+            $this->db->from('ads_images'); 
+            $this->db->limit($limit);
+            return $this->db->get()->result_array();
+        }
+        
 }  
 
 ?>

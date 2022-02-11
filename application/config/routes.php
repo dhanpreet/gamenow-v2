@@ -87,6 +87,12 @@ $route['BattleInfo'] = 'user/battleInfo';
 $route['BattleInfo/(:any)'] = 'user/battleInfo/$1';
 $route['BattleInfo/(:any)/(:any)'] = 'user/battleInfo/$1/$2';
 
+// Manage ads
+$route['Admin/Advertisements'] = 'admin/getAdvertisements';
+$route['Admin/editAdvertisement/(:any)'] = 'admin/editAdvertisement/$1';
+$route['Admin/saveAdvertisement'] = 'admin/saveAdvertisement';
+$route['Admin/ManageAdvertisementImages/(:any)'] = 'admin/manageAdvertisementImages/$1';
+
 /*
 | -------------------------------------------------------------------------
 | Sample REST API /Routes

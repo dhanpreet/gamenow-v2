@@ -354,7 +354,12 @@
                     ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <?php 
+                                $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                                if(empty($ad_image)) {
+                                    $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                                }
+                            ?>
                             <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
@@ -362,7 +367,7 @@
                             <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                             <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
@@ -469,7 +474,12 @@
                     ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <?php 
+                                $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                                if(empty($ad_image)) {
+                                    $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                                }
+                            ?>
                             <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
@@ -477,7 +487,7 @@
                             <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                             <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
@@ -642,7 +652,12 @@
                     ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <?php 
+                                $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                                if(empty($ad_image)) {
+                                    $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                                }
+                            ?>
                             <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
@@ -650,7 +665,7 @@
                             <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                             <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
@@ -773,7 +788,12 @@
                     ?>
                     <div class="row ads-style">
                         <div class="ad_image">
-                            <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                            <?php 
+                                $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                                if(empty($ad_image)) {
+                                    $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                                }
+                            ?>
                             <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                         </div>                        
                         <div class="ad_text">
@@ -781,7 +801,7 @@
                             <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                         </div>
                         <div class="ad_action">
-                            <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                            <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                             <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
                     </div>
@@ -827,7 +847,12 @@
             ?>
             <div class="row ads-style">
                 <div class="ad_image">
-                    <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                    <?php 
+                        $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                        if(empty($ad_image)) {
+                            $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                        }
+                    ?>
                     <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                 </div>                        
                 <div class="ad_text">
@@ -835,7 +860,7 @@
                     <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                 </div>
                 <div class="ad_action">
-                    <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                    <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                     <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                 </div>
             </div>
@@ -918,7 +943,12 @@
             ?>
             <div class="row ads-style">
                 <div class="ad_image">
-                    <?php $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; ?>
+                    <?php 
+                        $ad_image = ($ads_list[$random_ad]['images']['img_link'] == null) ? $ads_list[$random_ad]['images']['img_gif'] : $ads_list[$random_ad]['images']['img_link']; 
+                        if(empty($ad_image)) {
+                            $ad_image = ($ads_list[$random_ad]['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+                        }
+                    ?>
                     <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
                 </div>                        
                 <div class="ad_text">
@@ -926,7 +956,7 @@
                     <p><?php echo $ads_list[$random_ad]['ad_text_mini']; ?></p>
                 </div>
                 <div class="ad_action">
-                    <div class="btn"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></div>
+                    <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                     <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                 </div>
             </div>
@@ -1091,7 +1121,7 @@
                         <p id="ad_mini_text"></p>
                     </div>
                     <div class="ad_action">
-                        <div class="btn" id="ad_btn_text"></div>
+                        <a class="btn" id="ad_btn_text" href=""></a>
                         <div id="ad_action_text"></div>
                     </div>
                 </div>
@@ -1150,18 +1180,23 @@ $(document).ready(function(){
         var game_play_link = $(this).attr('href');
         console.log(game_play_link);
         
-        var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
-        var total_ads = ads.length;
-        var random_ad = getRndAd(1, total_ads);
+        var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>'); 
+        var total_ads = Object.keys(ads).length;
+        var random_ad = getRndAd(1, total_ads); 
         var random_ad_detail = ads[random_ad];
         console.log(random_ad_detail);
         
+        var ad_image_link = (ads[random_ad].images.img_link == null || ads[random_ad].images.img_link == '') ? ads[random_ad].images.img_gif : ads[random_ad].images.img_link; 
+        if(ad_image_link == null || ad_image_link == '') {
+            ad_image_link = (ads[random_ad].images.img_type == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
+        }
         
-        var image_src = "<?php echo base_url('uploads/ads/') ?>"+random_ad_detail.ad_image_link;
-        $('#ad_image').attr('src', image_src);
+        var image_src = "<?php echo base_url('uploads/ads/') ?>"+ad_image_link;
+        $('#ad_image').attr('src', image_src); 
         $('#ad_main_text').text(random_ad_detail.ad_text_main);
         $('#ad_mini_text').text(random_ad_detail.ad_text_mini);
         $('#ad_btn_text').text(random_ad_detail.ad_btn_text);
+        $('#ad_btn_text').attr('href', random_ad_detail.ad_link);
         $('#ad_action_text').text(random_ad_detail.ad_action_text);
 
         var timer = 5;
@@ -1176,7 +1211,7 @@ $(document).ready(function(){
             $('#adModal').modal('hide');
             window.location = game_play_link;
         }, 5000);
-
+        
     });
 });
 </script>

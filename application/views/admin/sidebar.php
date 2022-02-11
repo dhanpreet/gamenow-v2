@@ -43,6 +43,14 @@
 						<div class="menu-title">Manage Tournaments</div>
 					</a>
 				</li>
+                                
+                                <li>
+					<a href="<?php echo site_url('Admin/Advertisements') ?>">
+						
+						<div class="font-22"><i class="lni lni-game"></i></div>
+						<div class="menu-title">Manage Advertisements</div>
+					</a>
+				</li>
 				
 				<li>
 					<a href="<?php echo site_url('admin/logout') ?>">

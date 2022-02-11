@@ -386,9 +386,9 @@ class Site extends CI_Controller {
 			$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
                         
                         $all_ads = $this->SITEDBAPI->getAds($limit=100);
-                        $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100);
+                        $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
                         $data['ads_list'] = [];
-                        
+                        //echo "<pre>"; print_r($all_ads_images); die;
                         foreach($all_ads as $ad) {
                             $data['ads_list'][$ad['id']] = $ad;
                         }

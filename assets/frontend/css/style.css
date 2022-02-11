@@ -375,7 +375,7 @@ span.profile-picture > img {
 
 /*  **************************  For Modal Style  *********************   */
 	.modal{
-		margin-top: 15%;
+		margin-top: 15%; 
 	}
 	.modal-bg{
 		border-radius: 10px 10px 10px 10px;

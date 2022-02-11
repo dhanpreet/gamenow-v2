@@ -385,7 +385,23 @@ class Site extends CI_Controller {
 			
 			$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
                         
-                        $data['ads_list'] = $this->SITEDBAPI->getAds($limit=100);
+                        $all_ads = $this->SITEDBAPI->getAds($limit=100);
+                        $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
+                        $data['ads_list'] = [];
+                        //echo "<pre>"; print_r($all_ads_images); die;
+                        foreach($all_ads as $ad) {
+                            $data['ads_list'][$ad['id']] = $ad;
+                        }
+                        
+                        foreach($all_ads_images as $ad_images) {
+                            $data['ads_list'][$ad_images['ad_id']]['images'] = [
+                                'img_type' => $ad_images['img_type'],
+                                'img_link' => $ad_images['img_link'],
+                                'img_gif' => $ad_images['img_gif']
+                            ];
+                        }
+                       
+                        //echo "<pre>"; print_r($data['ads_list']); die;
 			
 			$this->load->view('site/homepage', $data);
 		} else {

@@ -375,7 +375,7 @@ span.profile-picture > img {
 
 /*  **************************  For Modal Style  *********************   */
 	.modal{
-		margin-top: 15%; 
+		/*margin-top: 15%; */
 	}
 	.modal-bg{
 		border-radius: 10px 10px 10px 10px;
@@ -519,4 +519,10 @@ span.profile-picture > img {
 
 .display-inline {
     display: inline;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    font-weight: 700;
 }

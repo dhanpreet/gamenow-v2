@@ -1192,7 +1192,7 @@
 $(document).ready(function(){ 
     
     var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
-    var total_ads = ads.length;
+    var total_ads = '<?php echo count($ads_list); ?>';
     function getRndAd(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }

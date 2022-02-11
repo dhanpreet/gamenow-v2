@@ -218,6 +218,33 @@ audio {
     .mainbox {
         height: 280px;
     }
+    .box1 .span1 b {
+        top: 80%;
+        right: 20%;
+        left: 4%;
+        transform: rotate(190deg);
+
+    }
+    .box1 .span2 b {
+        top: 47%;
+        right: 70%;
+        transform: rotate(-90deg);
+    }
+    .box1 .span3 b {
+        top: 15%;
+        right: 53%;
+    }
+    .box2 .span1 b {
+        top: 67%;
+        right: 60%;
+        left: 15%;
+        transform: rotate(40deg);
+    }
+    .box2 .span2 b {
+        top: 26%;
+        right: 67%;
+        transform: rotate(132deg);
+    }
 }
 
 @media (min-width: 390px) {
@@ -248,7 +275,7 @@ audio {
     
     .box1 .span1 b {
         top: 80%;
-        right: 43%;
+        right: 25%;
         transform: rotate(-170deg);
     }
     .box1 .span2 b {

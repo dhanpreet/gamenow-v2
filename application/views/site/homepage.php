@@ -1164,6 +1164,25 @@
     </div>
 </div>
 
+<div class="modal fade" id="spinWheelSuccess" tabindex="-1" role="dialog" aria-labelledby="spinWheelSuccess" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-bg modal-bg-custom" align="center">
+            <div class="modal-header">
+                <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:#fff;">&times;</span>
+                </button>                
+            </div>
+            <div class="modal-body">
+                <h4>Congratulations!</h4>
+                <p>You have won 30 days free subscription of</p>                
+                <h3 id="spin_wheel_selected"></h3>
+                <br>
+                <a class="btn btn-primary" id="redeem_now" href="">Redeem Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <audio controls="controls" id="applause" src="<?php echo base_url() ?>assets/frontend/sounds/applause.mp3" type="audio/mp3"></audio>
 <audio controls="controls" id="wheel" src="<?php echo base_url() ?>assets/frontend/sounds/wheel.mp3" type="audio/mp3"></audio>
 
@@ -1171,17 +1190,20 @@
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+    
+    var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
+    var total_ads = ads.length;
     function getRndAd(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+    
+    getAdsDetail();
     
     $(document).on('click', '.play_game_link', function(e) {
         e.preventDefault();
         var game_play_link = $(this).attr('href');
         console.log(game_play_link);
         
-        var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>'); 
-        var total_ads = Object.keys(ads).length;
         var random_ad = getRndAd(1, total_ads); 
         var random_ad_detail = ads[random_ad];
         console.log(random_ad_detail);
@@ -1214,6 +1236,38 @@ $(document).ready(function(){
         
     });
 });
+
+
+var spin_values = [];
+var redeem_now_link;
+
+function getAdsDetail() {
+    var all_ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
+    var ad_count = 1;
+    $.each(all_ads, function (key, val) {
+        if(val.id != '1') {
+            if(ad_count <= 5) {            
+                //var ad_text = val.ad_text_main;
+                spin_values.push({
+                    ad_name: val.ad_text_main, //ad_text.match(/.{1,10}/g).join("<br/>"), //val.ad_text_main.replace(" ","_"),
+                    ad_link: val.ad_link,
+                });
+                
+                //console.log(ad_count+'  '+val.ad_text_main);
+                
+                $('#spin_val_'+ad_count).html('<b>'+val.ad_text_main+'</b>');
+                
+            }        
+            ad_count++;
+        }
+    });
+    
+    console.log(spin_values);
+    
+}
+
+
+
 </script>
 
 <!-- Spin And Win Wheel -->
@@ -1242,28 +1296,45 @@ function spin() {
     const box = document.getElementById("box");
     const element = document.getElementById("mainbox");
     let SelectedItem = "";
-    let GamesWorld = shuffle([1890, 2250, 2610]);
-    let GamesClub = shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
-    let Lystn = shuffle([1810, 2170, 2530]);
-    let MagicalEnglish = shuffle([1770, 2130, 2490]);
-    let JazzGameZone = shuffle([1750, 2110, 2470]);
+    let spin_val_1 = shuffle([1685, 2045, 2765]); //shuffle([245]); //shuffle([1890, 2250, 2610]);
+    let spin_val_2 = shuffle([1610, 2210, 2690]); //shuffle([170]); //shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
+    let spin_val_3 = shuffle([1540, 2260, 2620]); //shuffle([90]); //shuffle([1810, 2170, 2530]);
+    let spin_val_4 = shuffle([1470, 2190, 2910]); //shuffle([30]); //shuffle([1770, 2130, 2490]);
+    let spin_val_5 = shuffle([1760, 2120, 2840]); //shuffle([320]); //shuffle([1750, 2110, 2470]);
     let Hasil = shuffle([
-        GamesWorld[0],
-        GamesClub[0],
-        Lystn[0],
-        MagicalEnglish[0],
-        JazzGameZone[0],
+        spin_val_1[0],
+        spin_val_2[0],
+        spin_val_3[0],
+        spin_val_4[0],
+        spin_val_5[0],
     ]);
-    // console.log(Hasil[0]);
+    //console.log(Hasil[0]);
     // get the value of selected item
-    if (GamesWorld.includes(Hasil[0])) SelectedItem = "Games World";
-    if (GamesClub.includes(Hasil[0])) SelectedItem = "Games Club";
-    if (Lystn.includes(Hasil[0])) SelectedItem = "Lystn";
-    if (MagicalEnglish.includes(Hasil[0])) SelectedItem = "Magical English";
-    if (JazzGameZone.includes(Hasil[0])) SelectedItem = "Jazz Game Zone";
+    if (spin_val_1.includes(Hasil[0])) {
+        SelectedItem = spin_values[0].ad_name;
+        redeem_now_link = spin_values[0].ad_link;
+    }
+    if (spin_val_2.includes(Hasil[0])) {
+        SelectedItem = spin_values[1].ad_name;
+        redeem_now_link = spin_values[1].ad_link;
+    }
+    if (spin_val_3.includes(Hasil[0])) {
+        SelectedItem = spin_values[2].ad_name;
+        redeem_now_link = spin_values[2].ad_link;
+    }
+    if (spin_val_4.includes(Hasil[0])) {
+        SelectedItem = spin_values[3].ad_name;
+        redeem_now_link = spin_values[3].ad_link;
+    }
+    if (spin_val_5.includes(Hasil[0])) {
+        SelectedItem = spin_values[4].ad_name;
+        redeem_now_link = spin_values[4].ad_link;
+    }
     // spin
-    box.style.setProperty("transition", "all ease 5s");
+    //box.style.setProperty("transition", "all ease 2s");
+    box.style.setProperty("transition-duration", "5s");
     box.style.transform = "rotate(" + Hasil[0] + "deg)";
+    
     element.classList.remove("animate");
     setTimeout(function () {
         element.classList.add("animate");
@@ -1272,10 +1343,14 @@ function spin() {
     setTimeout(function () {
         $('#spinWheelModal').modal('hide');
         $('.spin_wheel_close').removeAttr('disabled');
+        $('#spinWheelSuccess').modal('show');
         applause.play();
         
-        var msg = "You won free subscription for <a href='https://business.igpl.pro/'> " + SelectedItem + "</a>.";
+        $('#spin_wheel_selected').html(SelectedItem);
+        $('#redeem_now').attr('href', redeem_now_link);
         
+        /*
+        var msg = "You won free subscription for <a href='https://business.igpl.pro/'> " + SelectedItem + "</a>.";        
         var htmlContent = document.createElement("div");
         htmlContent.innerHTML = msg;
         
@@ -1285,6 +1360,7 @@ function spin() {
             type: "success",
             html: true,
         });
+        */
     }, 5500);
     // delay
     setTimeout(function () {

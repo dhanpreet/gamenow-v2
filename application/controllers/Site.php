@@ -376,6 +376,7 @@ class Site extends CI_Controller {
 			//$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
 			$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=1, $limit=5);
 			$data['tournamentGamesThumbs'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=2, $limit=10);
+			$data['tournamentGamesSpec'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
 			
 			
 			

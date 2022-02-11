@@ -601,6 +601,16 @@
 						</a>
 					<?php $tCount++; } ?>
 					
+					<?php  foreach($tournamentGamesSpec as $rowTournament){ ?>
+						<a href="<?php echo $rowTournament['game_play_link'] ?>">
+							<div>
+								<img style="border-radius:20px;" alt="<?php echo $rowTournament['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowTournament['img_link']) ?>">
+								<span class="game-name"><?php echo $rowTournament['game_name'] ?></span>
+								
+							</div>
+						</a>
+					<?php $tCount++; } ?>
+					
 				</div>
 			</div>
 		</div>
@@ -622,15 +632,22 @@
 					
 				
 				
+				<?php if(!empty($pageBanners[1]['game_play_link'])){ ?>
 				<a href="<?php echo $pageBanners[1]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[1]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[1]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
-				
-				<?php if(!empty($pageBanners[2]['img_gif_link'])){ ?>
-					<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_gif_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
-				<?php } else { ?>
-					<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
 				<?php } ?>
 				
-				<a href="<?php echo $pageBanners[3]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[3]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[3]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+				<?php if(!empty($pageBanners[2]['game_play_link'])){ ?>
+					<?php if(!empty($pageBanners[2]['img_gif_link'])){ ?>
+						<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_gif_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+					<?php } else { ?>
+						<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+					<?php } ?>
+				<?php } ?>
+				
+				
+				<?php if(!empty($pageBanners[3]['game_play_link'])){ ?>
+				<a href="<?php echo @$pageBanners[3]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[3]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[3]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+				<?php } ?>
 				
 				
 			</div>
@@ -1103,7 +1120,7 @@
 
 
 <!-- Ad Modal -->
-<div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="adModal"  style="margin-top:20%" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-bg modal-bg-custom" align="center">
             <div class="modal-header">
@@ -1135,14 +1152,15 @@
 
 
 <!-- Spin Wheel Modal -->
-<div class="modal fade" id="spinWheelModal" tabindex="-1" role="dialog" aria-labelledby="spinWheelModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="spinWheelModal" style="margin-top:20%" tabindex="-1" role="dialog" aria-labelledby="spinWheelModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-bg modal-bg-custom" align="center">
             <div class="modal-header">
                 <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color:#fff;">&times;</span>
                 </button>
-                <h4>Win Free Subscription</h4>
+                <h3>Win <b>30 Days</b> <br>Free Subscription</h3>
+                <br>
             </div>
             <div class="modal-body">
                 <div class="mainbox" id="mainbox">
@@ -1164,7 +1182,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="spinWheelSuccess" tabindex="-1" role="dialog" aria-labelledby="spinWheelSuccess" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="spinWheelSuccess" style="margin-top:20%"  tabindex="-1" role="dialog" aria-labelledby="spinWheelSuccess" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-bg modal-bg-custom" align="center">
             <div class="modal-header">
@@ -1173,11 +1191,12 @@
                 </button>                
             </div>
             <div class="modal-body">
-                <h4>Congratulations!</h4>
+                <h3>Congratulations!</h3>
                 <p>You have won 30 days free subscription of</p>                
                 <h3 id="spin_wheel_selected"></h3>
-                <br>
+                <br><br><br>
                 <a class="btn btn-primary" id="redeem_now" href="">Redeem Now</a>
+				<br><br>
             </div>
         </div>
     </div>

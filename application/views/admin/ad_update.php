@@ -134,6 +134,14 @@
                                     <span id="ad_link_error_hint" class="text-danger mt-1"></span>
                                 </div>
                             </div>
+                                
+                            <div class="row mb-4">
+                                <label for="subscription_coins" class="col-sm-4 col-form-label">Advertisement Subscription Coins</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="<?php echo $info['subscription_coins'] ; ?>" name="subscription_coins" id="subscription_coins" autocomplete="new-password" required />
+                                    <span id="subscription_coins_error_hint" class="text-danger mt-1"></span>
+                                </div>
+                            </div>
 		
                             <div class="row mb-5">
                                 <label class="col-sm-4 col-form-label"> Status</label>

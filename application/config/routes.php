@@ -58,6 +58,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['Login'] = 'site/login';
 $route['confirmLogin'] = 'site/confirmLogin';
 $route['Home'] = 'site/home';
+$route['redeemPoints'] = 'site/redeemPoints';
+$route['subscribe_ad'] = 'site/subscribe_ad';
 
 
 

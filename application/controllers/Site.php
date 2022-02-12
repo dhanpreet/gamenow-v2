@@ -145,8 +145,8 @@ class Site extends CI_Controller {
 	public function login(){
 		$user_msisdn='';
 		if(isset($_GET['number']) && !empty($_GET['number'])){
-			if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' )
-				$user_msisdn = 	$_GET['number'];
+                    if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' )
+                        $user_msisdn = 	$_GET['number'];
 		} 
 		
 		$data['profileImages'] = $this->SITEDBAPI->getProfileImages();
@@ -261,6 +261,15 @@ class Site extends CI_Controller {
 			$userData['user_phone'] = $userInfo['user_phone'];
 			$userData['user_img'] = $userInfo['user_img'];
 			$userData['user_logged_in'] = true;
+                        
+                        // add coins on daily visit
+                        $daily_visit_coins = 100;
+                        $total_coins = $daily_visit_coins + $userInfo['coins'];
+                        $updateUser['coins'] = $total_coins;
+                        $this->db->where('user_id', $userId);
+                        $this->db->update('tbl_users', $updateUser);
+                        
+                        
 			$this->session->set_userdata($userData);
 			redirect('Home');
 			
@@ -308,6 +317,12 @@ class Site extends CI_Controller {
 			if($msg == 'success'){
 				$dataArray['user_id'] = $user_id;
 				$dataArray['userInfo'] = $this->SITEDBAPI->getUserInformation($_GET['accessId']);
+                                echo "<pre>"; print_r($dataArray); die;
+                                // add coins on daily visit
+                                /*$this->db->where('user_id', $ad_id);
+                                $this->db->where('img_type', $type);
+                                $this->db->update('tbl_ads_images', $dataFile);
+                                */
 				$this->load->view('site/confirm_login', $dataArray);
 				
 			} else if($msg == 'error'){
@@ -403,7 +418,7 @@ class Site extends CI_Controller {
                         }
                        
                         //echo "<pre>"; print_r($data['ads_list']); die;
-			
+			$data['active_tab'] = 'home';
 			$this->load->view('site/homepage', $data);
 		} else {
 			redirect();
@@ -456,5 +471,65 @@ class Site extends CI_Controller {
 		
 	}
 
+        
+    public function redeemPoints() {
+        if($this->session->userdata('user_logged_in')) {
+            $user_id = $this->session->userdata('user_id');
+            $userInfo = $this->SITEDBAPI->getUserInformation($user_id);
 
+            $data['total_coins'] = $userInfo['coins'];
+
+            $all_ads = $this->SITEDBAPI->getAds($limit=100);
+            $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
+            $data['ads_list'] = [];
+            //echo "<pre>"; print_r($all_ads_images); die;
+            foreach($all_ads as $ad) {
+                $data['ads_list'][$ad['id']] = $ad;
+            }
+
+            foreach($all_ads_images as $ad_images) {
+                $data['ads_list'][$ad_images['ad_id']]['images'] = [
+                    'img_type' => $ad_images['img_type'],
+                    'img_link' => $ad_images['img_link'],
+                    'img_gif' => $ad_images['img_gif']
+                ];
+            }
+
+            //echo "<pre>"; print_r($data['ads_list']); die;
+            $data['active_tab'] = 'redeem_points';
+            $this->load->view('site/redeem_points', $data);
+        } 
+        else {
+            redirect();
+        }
+
+    }
+    
+    
+    public function subscribe_ad() {
+        //echo "<pre>"; print_r($_POST); die;
+        
+        $ad_id = $_POST['ad_id'];
+        $ad_info = $this->SITEDBAPI->getAdInfo($ad_id);
+        
+        $user_id = $this->session->userdata('user_id');
+        $userInfo = $this->SITEDBAPI->getUserInformation($user_id);
+
+        $user_coins = $userInfo['coins'];
+        
+        if($user_coins >= $ad_info['subscription_coins']) { //echo 'if'; die;
+            $update['coins'] = $user_coins - $ad_info['subscription_coins'];
+            
+            $this->db->where('user_id', $user_id);
+            $this->db->update('users', $update);
+            
+            redirect($ad_info['ad_link']);
+        }
+        else { //echo 'else'; die;
+            $this->session->set_flashdata("error","Sorry, You don't have enough coins.");
+            redirect('redeemPoints');
+        }
+        
+    }
+    
 }

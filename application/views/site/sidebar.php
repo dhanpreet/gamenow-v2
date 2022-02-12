@@ -36,11 +36,12 @@ $sessionPhone = @$this->session->userdata('user_phone');
 
 	<div class="side-menu">
 		<ul>
-			<li><a href="#" class="active"><i class="menu-item fa fa-home"></i> <span>Home</span></a></li>
+			<li><a href="<?php echo ($active_tab == 'home') ? '#' : site_url('site/Home'); ?>" class="<?php echo ($active_tab == 'home') ? 'active' : ''; ?>"><i class="menu-item fa fa-home"></i> <span>Home</span></a></li>
 			
 			<?php if($sessionUserId !== 'unknown'){ ?>
 				<li><a href="javascript(0);" data-toggle="modal" data-target="#updateProfileImage"> <i class="menu-item fa fa-user-circle"></i> <span>Update Your Avatar</span></a></li>
-			<?php } else { ?>
+                                <li><a href="<?php echo ($active_tab == 'redeem_points') ? '#' :  site_url('site/redeemPoints'); ?>" class="<?php echo ($active_tab == 'redeem_points') ? 'active' : ''; ?>"><i class="menu-item fa fa-trophy fa-solid"></i><span>Redeem Points</span></a></li>
+                        <?php } else { ?>
 				<li><a href="javascript(0);" data-toggle="modal" data-target="#loginModal"> <i class="menu-item fa fa-user-circle"></i> <span>Update Your Avatar</span></a></li>
 			<?php } ?>
 			

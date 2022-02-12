@@ -252,6 +252,14 @@ class Site_model extends CI_Model {
             return $this->db->get()->result_array();
         }
         
+        public function getAdInfo($ad_id){
+            $this->db->select('*' , FALSE);
+            $this->db->from('ads');
+            $this->db->where('id' , $ad_id);
+            $result = $this->db->get()->row_array();
+            return $result;
+        }
+        
         public function getAdsImages($limit, $img_type){
             $this->db->select("*", FALSE);
             $this->db->from('ads_images'); 

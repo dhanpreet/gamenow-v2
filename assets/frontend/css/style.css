@@ -526,3 +526,14 @@ span.profile-picture > img {
     color: #fff;
     font-weight: 700;
 }
+.subscription_box {
+    margin: 5px 60px;
+}
+.coins_heading {
+    font-size: 20px;
+}
+.error {
+    font-size: 18px;
+    color: red;
+    padding: 5px 20px;
+}

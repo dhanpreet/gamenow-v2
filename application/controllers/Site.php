@@ -436,6 +436,7 @@ class Site extends CI_Controller {
                             $this->db->update('tbl_users', $updateUser);  
 
                             $this->session->set_userdata('user_coins', $total_coins);
+                            $this->session->set_userdata('page_refresh_coins', $page_refresh_coins);
                         }
                         
                         

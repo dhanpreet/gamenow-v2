@@ -1194,6 +1194,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="freeCoins" tabindex="-1" role="dialog" aria-labelledby="freeCoins" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-bg modal-bg-custom" align="center">
+            <div class="modal-header">
+                <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:#fff;">&times;</span>
+                </button>                
+            </div>
+            <div class="modal-body">
+                <h4>Congratulations!</h4>
+                <p>You have earned <?php echo $this->session->userdata('page_refresh_coins'); ?> free coins.</p>   
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
 <audio controls="controls" id="applause" src="<?php echo base_url() ?>assets/frontend/sounds/applause.mp3" type="audio/mp3"></audio>
 <audio controls="controls" id="wheel" src="<?php echo base_url() ?>assets/frontend/sounds/wheel.mp3" type="audio/mp3"></audio>
 
@@ -1201,6 +1218,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+    $('#freeCoins').modal('show');
     
     var ads = $.parseJSON('<?php echo json_encode($ads_list); ?>');  
     var total_ads = '<?php echo count($ads_list); ?>';

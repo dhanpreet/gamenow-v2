@@ -352,6 +352,7 @@
                         }
                         //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
                     ?>
+                    <p class="ad_top_text">Advertisement</p>
                     <div class="row ads-style">
                         <div class="ad_image">
                             <?php 
@@ -472,6 +473,7 @@
                         }
                         //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
                     ?>
+                    <p class="ad_top_text">Advertisement</p>
                     <div class="row ads-style">
                         <div class="ad_image">
                             <?php 
@@ -650,6 +652,7 @@
                         }
                         //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
                     ?>
+                    <p class="ad_top_text">Advertisement</p>
                     <div class="row ads-style">
                         <div class="ad_image">
                             <?php 
@@ -786,6 +789,7 @@
                         }
                         //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
                     ?>
+                    <p class="ad_top_text">Advertisement</p>
                     <div class="row ads-style">
                         <div class="ad_image">
                             <?php 
@@ -845,6 +849,7 @@
                 }
                 //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
             ?>
+            <p class="ad_top_text">Advertisement</p>
             <div class="row ads-style">
                 <div class="ad_image">
                     <?php 
@@ -941,6 +946,7 @@
                 }
                 //echo "<pre>"; print_r($random_ad); print_r($ads_list); die;
             ?>
+            <p class="ad_top_text">Advertisement</p>
             <div class="row ads-style">
                 <div class="ad_image">
                     <?php 
@@ -1112,6 +1118,7 @@
                 </button-->
             </div>
             <div class="modal-body">
+                <p class="ad_top_text">Advertisement</p>
                 <div class="row ads-style">
                     <div class="ad_image">
                         <img src="" id="ad_image"/>
@@ -1142,6 +1149,7 @@
                 <button type="button" class="close spin_wheel_close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color:#fff;">&times;</span>
                 </button>
+                <p>Advertisement</p>
                 <h4>Win Free Subscription</h4>
             </div>
             <div class="modal-body">
@@ -1157,7 +1165,10 @@
                             <span class="font span2"><b>Jazz Game <br /> Zone</b></span>
                         </div>
                     </div>
-                    <button class="spin" onclick="spin()">SPIN</button>
+                    <button class="spin" onclick="spin()"></button>
+                    <div class="toast" style="top: 50%;left: 50%;transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0);visibility: visible;background-color: rgb(232, 29, 98);opacity: 1;z-index: 1000;">  
+                        <p>CLICK TO SPIN IT! </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1275,6 +1286,11 @@ function getAdsDetail() {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $(document).on('click', '.toast', function(e) {
+        $('.spin').trigger('click');
+    });
+});
 function shuffle(array) {
     var currentIndex = array.length,
     randomIndex;
@@ -1296,11 +1312,11 @@ function spin() {
     const box = document.getElementById("box");
     const element = document.getElementById("mainbox");
     let SelectedItem = "";
-    let spin_val_1 = shuffle([1685, 2045, 2765]); //shuffle([245]); //shuffle([1890, 2250, 2610]);
-    let spin_val_2 = shuffle([1610, 2210, 2690]); //shuffle([170]); //shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
-    let spin_val_3 = shuffle([1540, 2260, 2620]); //shuffle([90]); //shuffle([1810, 2170, 2530]);
-    let spin_val_4 = shuffle([1470, 2190, 2910]); //shuffle([30]); //shuffle([1770, 2130, 2490]);
-    let spin_val_5 = shuffle([1760, 2120, 2840]); //shuffle([320]); //shuffle([1750, 2110, 2470]);
+    let spin_val_1 = shuffle([1695, 2060, 2775]); //shuffle([245]); //shuffle([1890, 2250, 2610]);
+    let spin_val_2 = shuffle([1618, 1980, 2700]); //shuffle([170]); //shuffle([1850, 2210, 2570]); //Kemungkinan : 100%
+    let spin_val_3 = shuffle([1906, 2265, 2625]); //shuffle([90]); //shuffle([1810, 2170, 2530]);
+    let spin_val_4 = shuffle([1840, 2200, 2560]); //shuffle([30]); //shuffle([1770, 2130, 2490]);
+    let spin_val_5 = shuffle([1770, 2130, 2850]); //shuffle([320]); //shuffle([1750, 2110, 2470]);
     let Hasil = shuffle([
         spin_val_1[0],
         spin_val_2[0],

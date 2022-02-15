@@ -1,7 +1,7 @@
 <?php 
 $sessionUserId = $this->session->userdata('user_id');
 $sessionPhone = @$this->session->userdata('user_phone');
-
+$user_coins = $this->session->userdata('user_coins');
 
 ?>
 
@@ -61,28 +61,36 @@ $sessionPhone = @$this->session->userdata('user_phone');
 
 <div class="header-strip" style="border-bottom: 1px solid #312b2b; padding-bottom:10px;">
 	<span class="open-sidebar"><img src="<?php echo base_url() ?>assets/frontend/img/white-menu-icon.png"> </span>
-	<img src="<?php echo base_url() ?>assets/frontend/img/logo.png" width="50">
-	
-			<?php if($sessionUserId !== 'unknown'){ ?>
-				<a href="javascript(0);" data-toggle="modal" data-target="#updateProfileImage"> 
-					<span class="pull-right">
-						<img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo $this->session->userdata('user_img') ?>" width="44">
-					</span>
-				</a>
-			<?php } else { ?>
-				<a href="javascript(0);" data-toggle="modal" data-target="#loginModal"> 
-					<span class="pull-right">
-						<img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo base_url('uploads/site_users/default.png') ?>" width="44">
-					</span>
-				</a>
-			<?php } ?>
+        <a class="coins_bal_div" href="">
+                <div class="coins_img_div"><img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt=""></div>
+                <div class="coins_div">
+                       <div class="coins_heading">Coins</div>
+                       <div class="coins_number"><?php echo $user_coins; ?></div>
+                </div>
+        </a>
+        <div class="logo_div">
+            <img src="<?php echo base_url() ?>assets/frontend/img/logo.png" width="50">
+        </div>
         
-        <span class="pull-right">
-            <img id="spin_wheel" class="spin_wheel" src="<?php echo base_url() ?>assets/frontend/img/spin_wheel.png" width="44">
-        </span>
-		
-		
-		
+        <div class="user_info_div pull-right">
+            <?php if($sessionUserId !== 'unknown'){ ?>
+                    <a href="javascript(0);" data-toggle="modal" data-target="#updateProfileImage"> 
+                            <span class="">
+                                    <img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo $this->session->userdata('user_img') ?>" width="44">
+                            </span>
+                    </a>
+            <?php } else { ?>
+                    <a href="javascript(0);" data-toggle="modal" data-target="#loginModal"> 
+                            <span class="">
+                                    <img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo base_url('uploads/site_users/default.png') ?>" width="44">
+                            </span>
+                    </a>
+            <?php } ?>
+            
+            <span class="">
+                <img id="spin_wheel" class="spin_wheel" src="<?php echo base_url() ?>assets/frontend/img/spin_wheel.png" width="44">
+            </span>
+        </div>		
 	
 </div>
 

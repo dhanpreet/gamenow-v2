@@ -23,34 +23,39 @@ class Site extends CI_Controller {
 	}
 	
 	public function index(){
-		$user_msisdn='';
-		if(isset($_GET['number']) && !empty($_GET['number'])){
-			if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' ){
-				$phone = $_GET['number'];
+		$user_msisdn=''; 
+                
+                $guest_user_number = '9900000078';
+                $user_number = (isset($_GET['number']) && !empty($_GET['number'])) ? $_GET['number'] : $guest_user_number;
+                
+		if(!empty($user_number)){
+			if($user_number != 'UNKNOWN' && $user_number != 'unknown' ){
+                            $phone = $user_number;
 				$otp = rand(111111, 999999);
-				
+                                
 				//check phone already registered or not
 				$rsPhone = $this->SITEDBAPI->checkRegisteredPhone($phone); 
 				if($rsPhone['rows'] == 0){
 					
-					$userData['user_id'] = 'unknown';
-					$userData['user_logged_in'] = true;
+                                        $userData['user_id'] = 'unknown';
+					$userData['user_logged_in'] = true;                                        
 					$this->session->set_userdata($userData);
 					redirect('Home');
 					
 				} else {
 					
-					$rowUser = $rsPhone['result'];
-					//print_r($rowUser);
-					$userId = $rowUser['user_id'];
-					
-					$userInfo = $this->SITEDBAPI->getUserInformation($userId);
-					$userData['user_id'] = $userInfo['user_id'];
-					$userData['user_phone'] = $userInfo['user_phone'];
-					$userData['user_img'] = $userInfo['user_img'];
-					$userData['user_logged_in'] = true;
-					$this->session->set_userdata($userData);
-					redirect('Home');
+                                    $rowUser = $rsPhone['result'];
+                                    //print_r($rowUser);
+                                    $userId = $rowUser['user_id'];
+                                    
+                                    $userInfo = $this->SITEDBAPI->getUserInformation($userId);                                    
+                                    $userData['user_id'] = $userInfo['user_id'];
+                                    $userData['user_phone'] = $userInfo['user_phone'];
+                                    $userData['user_img'] = $userInfo['user_img'];
+                                    $userData['user_coins'] = $userInfo['coins'];
+                                    $userData['user_logged_in'] = true;
+                                    $this->session->set_userdata($userData);
+                                    redirect('Home');
 					
 				}
 			
@@ -417,6 +422,23 @@ class Site extends CI_Controller {
                         }
                        
                         //echo "<pre>"; print_r($data['ads_list']); die;
+                        
+                        $guest_user_number = '9900000078';
+                        $sessionUserId = $this->session->userdata('user_id');
+                        $sessionPhone = $this->session->userdata('user_phone');
+                        $sessionCoins = $this->session->userdata('user_coins');
+                        if($sessionPhone == $guest_user_number) {   
+                            // add coins on page refresh
+                            $page_refresh_coins = 10;
+                            $total_coins = $page_refresh_coins + $sessionCoins;
+                            $updateUser['coins'] = $total_coins;
+                            $this->db->where('user_id', $sessionUserId);
+                            $this->db->update('tbl_users', $updateUser);  
+
+                            $this->session->set_userdata('user_coins', $total_coins);
+                        }
+                        
+                        
 			$data['active_tab'] = 'home';
 			$this->load->view('site/homepage', $data);
 		} else {

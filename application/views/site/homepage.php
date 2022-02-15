@@ -1224,8 +1224,10 @@
             </div>
             <div class="modal-body">
                 <h4>Congratulations!</h4>
-                <p>You have earned <?php echo $this->session->userdata('page_refresh_coins'); ?> free coins.</p>   
-                <br><br><br>
+                <p><?php echo $this->session->userdata('page_refresh_coins'); ?> Coins added to your account successfully.</p>   
+                <p>You can redeem these coins anytime.</p>
+                <br>
+                <a class="btn btn-primary" id="free_coins_redeem_now" href="<?php echo site_url('site/redeemPoints'); ?>">Redeem Now</a>
             </div>
         </div>
     </div>
@@ -1284,6 +1286,12 @@ $(document).ready(function(){
         }, 5000);
         
     });
+    
+    
+    $(document).on('click', '.free_coins_redeem_now', function(e) {
+        window.location = "<?php echo site_url('site/redeemPoints'); ?>";
+    });
+    
 });
 
 

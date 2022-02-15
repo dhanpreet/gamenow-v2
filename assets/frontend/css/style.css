@@ -537,3 +537,48 @@ span.profile-picture > img {
     color: red;
     padding: 5px 20px;
 }
+.ad_top_text {
+    width: 80%;
+    margin: 10px auto;
+    color: #fff;
+}
+.coins_bal_div {
+    width: 85px;
+    align-items: center;
+    background-color: #000;
+    border: 1px solid #444;
+    border-radius: 4px;
+    display: flex;
+    height: 40px;
+    margin-right: 9px;
+    margin-left: 50px;
+}
+.coins_img_div {
+    margin-left: 5px;
+    width: 18px;
+}
+.coins_div {
+    margin-left: 5px;
+}
+.coins_heading {
+    font-size: 0.85em !important;
+    color: #48ff48 !important;
+    color: #B4C3FF;
+    font-size: 11px;
+    margin-bottom: 1px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.coins_number {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+}
+.logo_div {
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+.user_info_div {
+}

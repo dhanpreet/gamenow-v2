@@ -2,16 +2,17 @@
   position: relative;
   width: 500px;
   height: 500px;
+  font-family: 'Fjalla One', Arial, sand-serif;
 }
 .mainbox:after {
   position: absolute;
   content: "";
   width: 100%;
   height: 100%;
-  background: url(./img/arrow-bottom.png) no-repeat;
-  background-size: 5%;
-  left: 5%;
-  top: 48%;
+  background: url(./img/arrow_pointer.png) no-repeat;
+  background-size: 13%;
+  left: 8%;
+  top: 50%;
   transform: rotate(90deg);
 }
 .box {
@@ -23,6 +24,7 @@
   overflow: hidden;
   transition: all ease-in-out 5s;
   transform: rotate(90deg);
+  background-color: #fff;
 }
 .box span {
   width: 100%;
@@ -135,12 +137,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75px;
-  height: 75px;
+  width: 150px;
+  height: 140px;
   border-radius: 50%;
   border: 4px solid white;
-  background-color: #ff5722;
-  color: #fff;
+  /*background-color: #ff5722;
+  color: #fff; */
   box-shadow: 0 5px 20px #000;
   font-weight: bold;
   font-size: 22px;
@@ -171,7 +173,7 @@ audio {
   height: 300px;
 }
 .box {
-    width: 93%;
+    width: 93%;    
 }
 .font {
     font-size: 12px;
@@ -219,41 +221,90 @@ audio {
         height: 280px;
     }
     .box1 .span1 b {
-        top: 80%;
+        top: 84%;
         right: 20%;
         left: 4%;
-        transform: rotate(190deg);
+        transform: rotate(195deg);
 
     }
     .box1 .span2 b {
-        top: 47%;
-        right: 70%;
+        top: 48%;
+        right: 72%;
         transform: rotate(-90deg);
     }
     .box1 .span3 b {
-        top: 15%;
-        right: 53%;
+        top: 10%;
+        right: 57%;
+        transform: rotate(-10deg);
     }
     .box2 .span1 b {
-        top: 67%;
-        right: 60%;
-        left: 15%;
-        transform: rotate(40deg);
+        top: 72%;
+        right: 67%;
+        left: 14%;
+        transform: rotate(46deg);
     }
     .box2 .span2 b {
-        top: 26%;
-        right: 67%;
-        transform: rotate(132deg);
+        top: 21%;
+        right: 71%;
+        transform: rotate(125deg);
+    }
+    .toast p {
+        margin: 20px !important;
+        font-size: 14px !important;
+        line-height: 15px !important;
+    }
+    .spin {
+        width: 100px;
+        height: 100px;
     }
 }
 
 @media (min-width: 390px) {
     .box {
         width: 83%;
+        transform: rotate(100deg);
     }
     .mainbox {
         height: 280px;
     }
+    .box1 .span1 b {
+        top: 84%;
+        right: 20%;
+        left: 4%;
+        transform: rotate(190deg);
+
+    }
+    .box1 .span2 b {
+        top: 49%;
+        right: 73%;
+        transform: rotate(-90deg);
+    }
+    .box1 .span3 b {
+        top: 10%;
+        right: 57%;
+        transform: rotate(-10deg);
+    }
+    .box2 .span1 b {
+        top: 72%;
+        right: 67%;
+        left: 14%;
+        transform: rotate(46deg);
+    }
+    .box2 .span2 b {
+        top: 21%;
+        right: 71%;
+        transform: rotate(125deg);
+    }
+    .toast p {
+        margin: 20px !important;
+        font-size: 14px !important;
+        line-height: 15px !important;
+    }
+    .spin {
+        width: 100px;
+        height: 100px;
+    }
+    
 }
 
 @media (min-width: 410px) {
@@ -280,52 +331,91 @@ audio {
     }
     .box1 .span2 b {
         top: 46%;
-        right: 68%;
+        right: 71%;
         transform: rotate(-90deg);
     }
     .box1 .span3 b {
-        top: 15%;
+        top: 11%;
         right: 55%;
-        transform: rotate(-90deg);
+        transform: rotate(-15deg);
     }
     .box2 .span1 b {
-        top: 65%;
-        right: 65%;
-        left: 15%;
+        top: 67%;
+        right: 63%;
+        left: 8%;
         transform: rotate(50deg);
     }
     .box2 .span2 b {
-        top: 27%;
-        right: 66%;
+        top: 24%;
+        right: 68%;
         transform: rotate(-240deg);
+    }
+    .toast p {
+        margin: 23px !important;
+        font-size: 20px !important;
+        line-height: 32px !important;
+    }
+    .spin {
+        width: 150px !important;
+        height: 140px !important;
     }
 }
 
 
 .spin_wheel {
-    position: relative;
+    position: absolute;
     right: 65px;
-    top: 4px; 
+    top: 15px;
     cursor: pointer;
 }
 
 .box1 .span1 {
-    clip-path: polygon(4% 86%, 120% 221%, 50% 50%);
-    background-color: yellow;
+    clip-path: polygon(4% 86%, 110% 221%, 50% 50%);
+    background-color: rgb(230, 126, 34);
 }
 .box1 .span2 {
-    clip-path: polygon(0% 90%, 0% -2%, 50% 50%);
-    background-color: red;
+    clip-path: polygon(0% 86%, -15% 7%, 50% 50%);
+    background-color: rgb(231, 76, 60);
 }
 .box1 .span3 {
-    clip-path: polygon(-20% 0%, 120% 0, 50% 50%);
-    background-color: blue;
+    clip-path: polygon(-20% 0%, 60% 0, 50% 50%);
+    background-color: rgb(41, 128, 185);
 }
 .box2 .span1 {
-    clip-path: polygon(-5% 51%, 16% 210%, 50% 50%);
-    background-color: green;
+    clip-path: polygon(-5% 55%, 16% 190%, 50% 50%);
+    background-color: rgb(22, 160, 133);
 }
 .box2 .span2 {
-    clip-path: polygon(-451% 125%, 30% 0%, 50% 50%);
-    background-color: deeppink;
+    clip-path: polygon(-60% 56%, 30% 0%, 50% 50%);
+    background-color: rgb(152, 152, 90);
+}
+
+.toast {
+    position: absolute;
+    background-color: #E81D62;
+    border-radius: 12px;
+    opacity: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.toast p {
+    clear: both;
+    font-family: 'Fjalla One', Arial, sand-serif;
+    margin: 23px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #ededed;
+    letter-spacing: -0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 32px;
+    -webkit-transition: font-size .2s ease;
+    transition: font-size .2s ease;
+    -webkit-transition: line-height .2s ease;
+    transition: line-height .2s ease;
 }

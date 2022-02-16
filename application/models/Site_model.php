@@ -268,6 +268,23 @@ class Site_model extends CI_Model {
             return $this->db->get()->result_array();
         }
         
+        
+        function getFreeTournaments($limit, $img_type){
+            $today = date('Y-m-d');
+            $this->db->select("*", FALSE);
+            $this->db->from('partners_tournaments'); 
+            $this->db->join('tournament_images', 'tournament_images.tour_img_tournament_id=partners_tournaments.tournament_id', 'left');  
+            $this->db->where('tour_img_type', $img_type);  //    1=Full Banner  2=Thumbnail 
+            $this->db->where('tournament_type', '1');  //    1: Free, 2: Paid
+            $this->db->where("tournament_start_date <= '$today' ");  
+            $this->db->where("tournament_end_date >= '$today' ");  
+            $this->db->group_by('partners_tournaments.tournament_id');
+            $this->db->order_by('partners_tournaments.tournament_id','RANDOM');
+
+            $this->db->limit($limit);
+            return $this->db->get()->result_array();
+	}
+        
 }  
 
 ?>

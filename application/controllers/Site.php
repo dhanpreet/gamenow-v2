@@ -423,6 +423,10 @@ class Site extends CI_Controller {
                        
                         //echo "<pre>"; print_r($data['ads_list']); die;
                         
+                        
+                        $data['freeTournament'] = $this->SITEDBAPI->getFreeTournaments($limit=1, $img_type=1);
+                        //echo "<pre>"; print_r($data['freeTournament']); die;
+                        
                         $guest_user_number = '9900000078';
                         $sessionUserId = $this->session->userdata('user_id');
                         $sessionPhone = $this->session->userdata('user_phone');

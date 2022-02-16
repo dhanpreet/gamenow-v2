@@ -60,7 +60,7 @@
 				<!--end breadcrumb-->
 				
 				<br><br>
-				<h6 class="mb-0 text-uppercase">New Tournament Information</h6>
+				<h6 class="mb-0 text-uppercase">Tournament Information</h6>
 				<hr/>
 				<div class="card">
 					<div class="card-body">
@@ -130,14 +130,14 @@
 							<div class="row mb-4">
 								<label for="tournament_start_date" class="col-sm-4 col-form-label">Start date</label>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" name="tournament_start_date" id="tournament_start_date" autocomplete="new-password" required />
+									<input type="date" class="form-control" value="<?php echo date('Y-m-d', strtotime($info['tournament_start_date'])); ?>" name="tournament_start_date" id="tournament_start_date" autocomplete="new-password" required />
 								</div>
 							</div>
 							
 							<div class="row mb-4">
 								<label for="tournament_end_date" class="col-sm-4 col-form-label">End date</label>
 								<div class="col-sm-8">
-								<input type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" name="tournament_end_date" id="tournament_end_date" autocomplete="new-password" required />
+								<input type="date" class="form-control" value="<?php echo date('Y-m-d', strtotime($info['tournament_end_date'])); ?>" name="tournament_end_date" id="tournament_end_date" autocomplete="new-password" required />
 									<!-- <span id="username_error_hint" class="text-danger mt-1"></span> -->
 								</div>
 							</div>
@@ -148,6 +148,23 @@
 								<div class="col-sm-8">
 									<input type="url" class="form-control" value="<?php echo $info['tournament_play_link'] ; ?>" name="tournament_play_link" id="tournament_play_link" autocomplete="new-password" required />
 									<span id="username_error_hint" class="text-danger mt-1"></span>
+								</div>
+							</div>
+                                                            
+                                                        <div class="row mb-4">
+								<label for="tournament_type" class="col-sm-4 col-form-label">Tournament Type</label>
+								<div class="col-sm-8">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                    <input class="form-check-input" type="radio" name="tournament_type" id="tournament_type_radio_1" value="1" <?php if($info['tournament_type']==1) echo 'checked'; ?>/>
+                                                                                    <label class="form-check-label" for="tournament_type_radio_1">Free</label>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                    <input class="form-check-input" type="radio" name="tournament_type" id="tournament_type_radio_2" value="2" <?php if($info['tournament_type']==2) echo 'checked'; ?>/>
+                                                                                    <label class="form-check-label" for="tournament_type_radio_2">Paid</label>
+                                                                            </div>										
+									</div>
 								</div>
 							</div>
 							

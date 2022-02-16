@@ -375,7 +375,7 @@ span.profile-picture > img {
 
 /*  **************************  For Modal Style  *********************   */
 	.modal{
-		/*margin-top: 15%; */
+		margin-top: 15%; 
 	}
 	.modal-bg{
 		border-radius: 10px 10px 10px 10px;
@@ -569,6 +569,21 @@ span.profile-picture > img {
     text-transform: uppercase;
     font-weight: 400;
 }
+.redeem_points_coins_heading {
+    font-size: 18px;
+    color: #B4C3FF;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 5px 30px;
+}
+.redeem_points_coins_heading b {
+    color: #48ff48 !important;
+}
+.redeem_points_coins_heading span {
+    margin-right: 30px;
+    color: #fff;
+    font-weight: 700;
+}
 .coins_number {
     color: #ffffff;
     font-size: 12px;
@@ -581,4 +596,38 @@ span.profile-picture > img {
     top: 0;
 }
 .user_info_div {
+}
+.free_tournament_div {
+    margin-top: 0px;
+}
+.redeem_points_div {
+    width: 80%;
+    background-color: rgb(253 253 253 / 85%);
+    margin: 20px auto;
+    border-radius: 10px;
+}
+.ad_text span {
+    font-size: 20px;
+    font-weight: 700;
+}
+.redeem_points_div .ad_text {
+    padding: 10px;
+}
+.redeem_points_div .ad_action {
+    padding: 20px 20px;
+    text-align: left;
+}
+.subscription_coins {
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+.btn-success {
+    background-color: #5cb85c;
+    border-color: #007bff;
+    color: #fff;
+    font-weight: 700;
+}
+.subscribe_btn {
+    margin-top: 20px;
 }

@@ -82,8 +82,14 @@
         </div>
         <?php } ?>
         
-        <div class="row">
-            <h4 class="heading coins_heading"><b>Total Coins:</b> <?php echo $total_coins; ?></h4>
+        <div class="row">            
+            <h4 class="heading redeem_points_coins_heading">
+                <b>My Coins:</b> 
+                <span class="pull-right">
+                    <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
+                    <?php echo $total_coins; ?>
+                </span>
+            </h4>
             
             <!-- Advertisements -->
             <?php                 
@@ -92,27 +98,19 @@
             ?>
             <form method="POST" action="<?php echo site_url('site/subscribe_ad') ?>" id="subscribe_ad_<?php echo $ad['id']; ?>">
                 <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>" />
-                <div class="row ads-style">
-                    <div class="ad_image">
-                        <?php 
-                            $ad_image = ($ad['images']['img_link'] == null) ? $ad['images']['img_gif'] : $ad['images']['img_link']; 
-                            if(empty($ad_image)) {
-                                $ad_image = ($ad['images']['img_type'] == 1) ? 'default_hero_banner_gif.gif' : 'default_vertical_banner.jpg';
-                            }
-                        ?>
-                        <img src="<?php echo base_url('uploads/ads/'.$ad_image) ?>"/>
-                    </div>                        
-                    <div class="ad_text">
-                        <h4 class="ad_name_<?php echo $ad['id']; ?>"><?php echo $ad['ad_text_main']; ?></h4>
-                        <p><?php echo $ad['ad_text_mini']; ?></p>
-                    </div>
-                    <div class="ad_action">
-                        <a class="btn" href="<?php echo $ad['ad_link']; ?>"><?php echo $ad['ad_btn_text']; ?></a>
-                        <small class="ad_action_text"><?php echo $ad['ad_action_text']; ?></small>
-                    </div>
-                </div>
-                <div class="row subscription_box">
-                    <button class="btn btn-primary subscribe_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Subscribe for <span class="ad_coins_<?php echo $ad['id']; ?>"><?php echo $ad['subscription_coins']; ?></span> coins.</button>
+                <div class="row">        
+                    <div class="redeem_points_div">
+                        <div class="ad_text">
+                            <span class="ad_name_<?php echo $ad['id']; ?>"><?php echo $ad['ad_text_main']; ?></span>
+                            <br>
+                            <p>30 Days Free Subscription</p>
+                        </div>
+                        <div class="ad_action">
+                            <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
+                            <span class="subscription_coins"><?php echo $ad['subscription_coins']; ?></span>                            
+                            <button class="btn btn-success subscribe_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Redeem Now</button>
+                        </div>
+                    </div>                    
                 </div>
                 <br>
             </form>
@@ -122,6 +120,8 @@
     </div>
 </section>
 </div>
+    
+<?php include("spin_wheel.php"); ?>
 
 <!-- Modal -->
 <div class="modal fade" id="loginModal" style="z-index:999999 !important;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -207,8 +207,8 @@
                     <div class="row">
                         <p>
                             Are you sure you want to subscribe 
-                            <span id="subscribe_ad_name"></span> 
-                            for <span id="subscribe_ad_coins"></span>?
+                            <span id="subscribe_ad_name"></span>?
+                            <!--for <span id="subscribe_ad_coins"></span>? -->
                         </p>
                     </div>
                     <br>
@@ -279,12 +279,12 @@ $(document).ready(function(){
     $(document).on('click', '.subscribe_btn', function(e){
         e.preventDefault();
         var subscribe_ad_id = $(this).data('ad_id');
-        var ad_name = $('.ad_name_'+subscribe_ad_id).html();
-        var ad_coins = $('.ad_coins_'+subscribe_ad_id).html();
+        var ad_name = $.trim($('.ad_name_'+subscribe_ad_id).html());
+        //var ad_coins = $('.ad_coins_'+subscribe_ad_id).html();
         
         $('#subscribe_ad_id').val(subscribe_ad_id);
         $('#subscribe_ad_name').text(ad_name);
-        $('#subscribe_ad_coins').text(ad_coins);
+        //$('#subscribe_ad_coins').text(ad_coins);
         
         $('#subscribeAdModal').modal('show');
         

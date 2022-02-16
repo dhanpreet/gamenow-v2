@@ -631,6 +631,16 @@
 						</a>
 					<?php $tCount++; } ?>
 					
+					<?php  foreach($tournamentGamesSpec as $rowTournament){ ?>
+						<a href="<?php echo $rowTournament['game_play_link'] ?>">
+							<div>
+								<img style="border-radius:20px;" alt="<?php echo $rowTournament['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$rowTournament['img_link']) ?>">
+								<span class="game-name"><?php echo $rowTournament['game_name'] ?></span>
+								
+							</div>
+						</a>
+					<?php $tCount++; } ?>
+					
 				</div>
 			</div>
 		</div>
@@ -652,15 +662,22 @@
 					
 				
 				
+				<?php if(!empty($pageBanners[1]['game_play_link'])){ ?>
 				<a href="<?php echo $pageBanners[1]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[1]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[1]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
-				
-				<?php if(!empty($pageBanners[2]['img_gif_link'])){ ?>
-					<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_gif_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
-				<?php } else { ?>
-					<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
 				<?php } ?>
 				
-				<a href="<?php echo $pageBanners[3]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[3]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[3]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+				<?php if(!empty($pageBanners[2]['game_play_link'])){ ?>
+					<?php if(!empty($pageBanners[2]['img_gif_link'])){ ?>
+						<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_gif_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+					<?php } else { ?>
+						<a href="<?php echo $pageBanners[2]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[2]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[2]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+					<?php } ?>
+				<?php } ?>
+				
+				
+				<?php if(!empty($pageBanners[3]['game_play_link'])){ ?>
+				<a href="<?php echo @$pageBanners[3]['game_play_link'] ?>"><img width="100%" alt="<?php echo $pageBanners[3]['game_name'] ?>" src="<?php echo base_url('uploads/content/'.$pageBanners[3]['img_link']) ?>"><span class="play-icon"><i class="fa fa-play"></i></span></a>
+				<?php } ?>
 				
 				
 			</div>
@@ -913,7 +930,7 @@
 		<?php } ?>
 		<div class="row">
 			<div class="heading">
-			<h3>Tournamnets for You</h3>
+			<h3>Tournaments for You</h3>
 			<span class="head-desc">Bite-sized games to play</span>
 			
 			</div>
@@ -1137,7 +1154,7 @@
 
 
 <!-- Ad Modal -->
-<div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="adModal"  style="margin-top:20%" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-bg modal-bg-custom" align="center">
             <div class="modal-header">

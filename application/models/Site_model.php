@@ -171,6 +171,19 @@ class Site_model extends CI_Model {
         return $this->db->get()->result_array();
 	}
 	
+	function getPublishedTournamentGames($limit){
+		$img_types = array('7');  // 1=HeroBanner  2=PageBanner 3=LargThumb  4=MediumThumb  5=SmallThumb  6=HorizontalThumb  7=VerticleThumb  
+		$this->db->select("game_id, game_name, game_category, game_play_link, img_link, img_gif_link", FALSE);
+        $this->db->from('partners_games'); 
+		$this->db->join('partners_games_images', 'partners_games_images.img_game_id=partners_games.game_id', 'left');  
+		$this->db->where_in('img_type', $img_types);
+		$this->db->where('game_tournament', '1');  
+		$this->db->where('game_status', '2');  // 0=AddedOnly  1=Approved  2=Published  3=Reject  4=Inactive
+		$this->db->group_by('partners_games.game_id');
+		$this->db->order_by('partners_games.game_id','RANDOM');
+		$this->db->limit($limit);
+        return $this->db->get()->result_array();
+	}
 	
 	
 	function getPublishedFullTournamentGames($limit){

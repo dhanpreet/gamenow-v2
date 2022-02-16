@@ -160,7 +160,8 @@ class Site_model extends CI_Model {
         $this->db->from('partners_tournaments'); 
 		$this->db->join('tournament_images', 'tournament_images.tour_img_tournament_id=partners_tournaments.tournament_id', 'left');  
 		$this->db->where('tour_img_type', $type);  //    1=Full Banner  2=Thumbnail 
-		$this->db->where('tournament_status', '2');  //    2=Published  3=Reject 
+		$this->db->where('tournament_status', '2');  //    2=Published  3=Reject
+                $this->db->where('tournament_type', '2');  //    1=Free  2=Paid 
 		$this->db->where("tournament_start_date <= '$today' ");  
 		$this->db->where("tournament_end_date >= '$today' ");  
 		$this->db->group_by('partners_tournaments.tournament_id');

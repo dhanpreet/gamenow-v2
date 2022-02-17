@@ -33,28 +33,7 @@
     right: 6px;
     bottom: 0px;
     border: 3px solid;
-}
-
-	
-.thumb-container > img {
-        text-align: center !important;
-        max-width:100%;
-}
-
-.thumb-container{
-        background:#efefef;
-        border-radius:5px;
-        padding:10px 10px 10px 10px;
-}
-.padding-10{
-        padding:10px !important;
-}
-
-.thumb-container-active{
-        background:#2b2b2b !important;
-
-}
-	
+}	
 </style>
 
 <?php  include "pwa_settings.php"; ?>
@@ -90,15 +69,17 @@
                     <?php echo $total_coins; ?>
                 </span>
             </h4>
-            
+        </div>
+        
             <!-- Advertisements -->
             <?php                 
                 //echo "<pre>"; print_r($ads_list); die;            
                 foreach($ads_list as $ad) {
             ?>
+            <div class="row">  
             <form method="POST" action="<?php echo site_url('site/subscribe_ad') ?>" id="subscribe_ad_<?php echo $ad['id']; ?>">
                 <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>" />
-                <div class="row">        
+                    
                     <div class="col-lg-11 redeem_points_div">
                         <div class="col-lg-12">
                             <span class="ad_text_span ad_name_<?php echo $ad['id']; ?>"><?php echo $ad['ad_text_main']; ?></span>
@@ -118,14 +99,12 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>    
-                    <div class="clearfix"></div>
-                </div>
-                <br>
-            </form>
+                    <div class="clearfix"></div>                
+                </form>
+            </div>
+            <br>
             <?php } ?>
         </div>
-        <br><br>
-    </div>
 </section>
 </div>
     

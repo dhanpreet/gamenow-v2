@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/fontawesome-5.15.1/css/brands.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/css/glider.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/css/spin_wheel.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/frontend/css/fireworks.css">
 <script src="<?php echo base_url() ?>assets/frontend/js/jquery.js"></script>
 <script src="<?php echo base_url() ?>assets/frontend/js/bootstrap.js"></script>
 <script src="<?php echo base_url() ?>assets/frontend/js/glider.js"></script>
@@ -378,7 +379,7 @@
                     <?php if(!empty($freeTournament[0])){ ?>
                         <div class="row">
                             <div class="heading">
-                                <h3 class="pull-left">Free For All</h3>
+                                <h3 class="pull-left">Participate for free and win 50 MB</h3>
                             </div>
                         </div>
 			<div class="row">
@@ -420,7 +421,11 @@
 			</div>
 		</div>  -->
 
-
+                <div class="row">
+                    <div class="heading">
+                        <h3 class="pull-left">Tournament of the week</h3>
+                    </div>
+                </div>
 		<div class="row">
 			<div class="glider-contain">
 				<div class="glider-0">
@@ -1182,7 +1187,7 @@
 
 
 <!-- Ad Modal -->
-<div class="modal fade" id="adModal"  style="margin-top:20%" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="adModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-bg modal-bg-custom" align="center">
             <div class="modal-header">
@@ -1224,7 +1229,10 @@
                     <span aria-hidden="true" style="color:#fff;">&times;</span>
                 </button>                
             </div>
-            <div class="modal-body">
+            <div class="modal-body pyro">
+                <div class="before"></div>
+                <div class="after"></div>
+                
                 <h4>Congratulations!</h4>
                 <p><?php echo $this->session->userdata('page_refresh_coins'); ?> Coins added to your account successfully.</p>   
                 <p>You can redeem these coins anytime.</p>

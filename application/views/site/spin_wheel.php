@@ -13,13 +13,13 @@
                 <div class="mainbox" id="mainbox">
                     <div class="box" id="box">
                         <div class="box1">
-                            <span class="font span1"><b>Games World</b></span>
-                            <span class="font span2"><b>Games Club</b></span>
-                            <span class="font span3"><b>Lystn</b></span>
+                            <span class="font span1" id="spin_val_1"></span>
+                            <span class="font span2" id="spin_val_2"></span>
+                            <span class="font span3" id="spin_val_3"></span>
                         </div>
                         <div class="box2">
-                            <span class="font span1"><b>Magical English</b></span>
-                            <span class="font span2"><b>Jazz Game <br /> Zone</b></span>
+                            <span class="font span1" id="spin_val_4"></span>
+                            <span class="font span2" id="spin_val_5"></span>
                         </div>
                     </div>
                     <button class="spin" onclick="spin()"></button>

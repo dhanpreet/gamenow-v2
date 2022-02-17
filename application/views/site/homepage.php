@@ -1216,9 +1216,7 @@ $(document).ready(function(){
     function getRndAd(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
-    
-    getAdsDetail();
-    
+        
     $(document).on('click', '.play_game_link', function(e) {
         e.preventDefault();
         var game_play_link = $(this).attr('href');

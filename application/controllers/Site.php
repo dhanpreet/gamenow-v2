@@ -550,6 +550,7 @@ class Site extends CI_Controller {
             $this->db->where('user_id', $user_id);
             $this->db->update('users', $update);
             
+            $this->session->set_userdata('user_coins', $update['coins']);
             redirect($ad_info['ad_link']);
         }
         else { //echo 'else'; die;

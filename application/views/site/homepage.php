@@ -378,7 +378,7 @@
                     <?php if(!empty($freeTournament[0])){ ?>
                         <div class="row">
                             <div class="heading">
-                                <h3 class="pull-left">Free For You</h3>
+                                <h3 class="pull-left">Free For All</h3>
                             </div>
                         </div>
 			<div class="row">
@@ -860,7 +860,7 @@
                     <?php if(!empty($freeTournament[0])){ ?>
                         <div class="row">
                             <div class="heading">
-                                <h3 class="pull-left">Free For You</h3>
+                                <h3 class="pull-left">Free For All</h3>
                             </div>
                         </div>
 			<div class="row">

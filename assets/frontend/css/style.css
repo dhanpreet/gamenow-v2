@@ -601,12 +601,14 @@ span.profile-picture > img {
     margin-top: 0px;
 }
 .redeem_points_div {
-    width: 80%;
+    /*width: 80%; */
     background-color: rgb(253 253 253 / 85%);
-    margin: 20px auto;
+    /*margin: 0px 20px; */
     border-radius: 10px;
+    margin-left: 40px;
+    padding: 15px;
 }
-.ad_text span {
+.ad_text_span {
     font-size: 20px;
     font-weight: 700;
 }
@@ -621,13 +623,70 @@ span.profile-picture > img {
     font-size: 18px;
     font-weight: 700;
     margin-left: 10px;
+    display: inline-block;
 }
 .btn-success {
     background-color: #5cb85c;
-    border-color: #007bff;
+    border-color: #5cb85c;
     color: #fff;
     font-weight: 700;
 }
 .subscribe_btn {
-    margin-top: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+}
+.margin-top-15 {
+    margin-top: 15px;
+}
+.subscription_text_div {
+    width: 70%;
+    display: inline-block;
+}
+.subscribe_div {
+    width: 25%;
+    display: inline-block;
+}
+
+@media (min-width: 360px) {
+    .redeem_points_div {
+        width: 85%;
+        margin-left: 30px;
+    }
+    .subscription_coins {
+        margin-left: 0px;
+        display: inline-block;
+    }
+    .subscribe_btn {
+        margin-top: 5px;
+    }
+    .subscription_text_div {
+        width: 60%;
+        display: inline-block;
+    }
+    .subscribe_div {
+        width: 25%;
+        display: inline-block;
+    }
+}
+
+@media (min-width: 500px) {
+    .redeem_points_div {
+        width: 90%;
+        margin-left: 40px;
+    }
+    .subscription_coins {
+        margin-left: 5px;
+        display: inline-block;
+    }
+    .subscribe_btn {
+        margin-top: 10px;
+    }
+    .subscription_text_div {
+        width: 70%;
+        display: inline-block;
+    }
+    .subscribe_div {
+        width: 25%;
+        display: inline-block;
+    }
 }

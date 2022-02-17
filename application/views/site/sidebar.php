@@ -61,7 +61,7 @@ $user_coins = $this->session->userdata('user_coins');
 
 <div class="header-strip" style="border-bottom: 1px solid #312b2b; padding-bottom:10px;">
 	<span class="open-sidebar"><img src="<?php echo base_url() ?>assets/frontend/img/white-menu-icon.png"> </span>
-        <a class="coins_bal_div" href="">
+        <a class="coins_bal_div" href="<?php echo site_url('site/redeemPoints'); ?>">
                 <div class="coins_img_div"><img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt=""></div>
                 <div class="coins_div">
                        <div class="coins_heading">Coins</div>

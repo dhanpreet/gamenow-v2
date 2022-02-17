@@ -84,7 +84,7 @@
         
         <div class="row">            
             <h4 class="heading redeem_points_coins_heading">
-                <b>My Coins:</b> 
+                <b>My Coins</b> 
                 <span class="pull-right">
                     <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
                     <?php echo $total_coins; ?>
@@ -99,18 +99,26 @@
             <form method="POST" action="<?php echo site_url('site/subscribe_ad') ?>" id="subscribe_ad_<?php echo $ad['id']; ?>">
                 <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>" />
                 <div class="row">        
-                    <div class="redeem_points_div">
-                        <div class="ad_text">
-                            <span class="ad_name_<?php echo $ad['id']; ?>"><?php echo $ad['ad_text_main']; ?></span>
-                            <br>
-                            <p>30 Days Free Subscription</p>
+                    <div class="col-lg-11 redeem_points_div">
+                        <div class="col-lg-12">
+                            <span class="ad_text_span ad_name_<?php echo $ad['id']; ?>"><?php echo $ad['ad_text_main']; ?></span>
                         </div>
-                        <div class="ad_action">
-                            <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
-                            <span class="subscription_coins"><?php echo $ad['subscription_coins']; ?></span>                            
-                            <button class="btn btn-success subscribe_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Redeem Now</button>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 margin-top-15">
+                            <div class="subscription_text_div">
+                                <p>30 Days <br>
+                                Free Subscription</p>
+                            </div>
+                            <div class="subscribe_div">
+                                <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
+                                <span class="subscription_coins"><?php echo $ad['subscription_coins']; ?></span>                            
+                                <br>
+                                <button class="btn btn-success subscribe_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Redeem Now</button>
+                            </div>
                         </div>
-                    </div>                    
+                        <div class="clearfix"></div>
+                    </div>    
+                    <div class="clearfix"></div>
                 </div>
                 <br>
             </form>

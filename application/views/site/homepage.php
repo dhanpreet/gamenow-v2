@@ -378,7 +378,7 @@
                     <?php if(!empty($freeTournament[0])){ ?>
                         <div class="row">
                             <div class="heading">
-                                <h3 class="pull-left">Free Tournament</h3>
+                                <h3 class="pull-left">Free For You</h3>
                             </div>
                         </div>
 			<div class="row">
@@ -853,7 +853,35 @@
                             <a class="btn" href="<?php echo $ads_list[$random_ad]['ad_link']; ?>"><?php echo $ads_list[$random_ad]['ad_btn_text']; ?></a>
                             <small class="ad_action_text"><?php echo $ads_list[$random_ad]['ad_action_text']; ?></small>
                         </div>
-                    </div>
+                    </div
+                    
+                    
+                    <!-- Free Tournament -->
+                    <?php if(!empty($freeTournament[0])){ ?>
+                        <div class="row">
+                            <div class="heading">
+                                <h3 class="pull-left">Free For You</h3>
+                            </div>
+                        </div>
+			<div class="row">
+                            <div class="single-banner free_tournament_div">
+                                <?php 
+                                $tournament_image_type = $freeTournament[0]['tour_img_type'];
+                                $tournament_image = (!empty($freeTournament[0]['tour_img_img_link'])) ? $freeTournament[0]['tour_img_img_link'] : $freeTournament[0]['tour_img_img_gif'];
+                                
+                                if(empty($tournament_image)) {
+                                    $tournament_image = base_url('uploads/tournaments/default_hero_banner_gif.gif');
+                                }
+                                else {
+                                    $tournament_image = base_url('uploads/tournaments/'.$tournament_image);
+                                }
+                                ?>
+                                <a href="<?php echo $freeTournament[0]['tournament_play_link'] ?>">
+                                    <img class="img-responsive" alt="<?php echo $freeTournament[0]['tournament_name'] ?>" src="<?php echo $tournament_image; ?>">
+                                </a>
+                            </div>
+			</div>
+                    <?php } ?>
                     
 			<div class="free-games-content" style="margin-top: 30px;">
 			

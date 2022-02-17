@@ -1229,7 +1229,7 @@
                 <p><?php echo $this->session->userdata('page_refresh_coins'); ?> Coins added to your account successfully.</p>   
                 <p>You can redeem these coins anytime.</p>
                 <br>
-                <a class="btn btn-primary" id="free_coins_redeem_now" href="<?php echo site_url('site/redeemPoints'); ?>">Redeem Now</a>
+                <a class="btn btn-success subscribe_btn" id="free_coins_redeem_now" href="<?php echo site_url('site/redeemPoints'); ?>">Redeem Now</a>
             </div>
         </div>
     </div>

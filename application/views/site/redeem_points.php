@@ -220,8 +220,8 @@
                         </p>
                     </div>
                     <br>
-                    <div class="row pull-right">
-                        <button class="btn btn-primary" id="subscribe_confirm">Subscribe</button>
+                    <div class="row">
+                        <button class="btn btn-success subscribe_btn" id="subscribe_confirm">Subscribe</button>
                     </div>   
                 </div>                             
             </div>

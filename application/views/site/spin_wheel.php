@@ -45,7 +45,7 @@
                 <p>You have won 30 days free subscription of</p>                
                 <h3 id="spin_wheel_selected"></h3>
                 <br>
-                <a class="btn btn-primary" id="redeem_now" href="">Redeem Now</a>
+                <a class="btn btn-success subscribe_btn" id="redeem_now" href="">Redeem Now</a>
             </div>
         </div>
     </div>

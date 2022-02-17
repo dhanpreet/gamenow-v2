@@ -113,7 +113,7 @@
                                 <img src="<?php echo base_url() ?>assets/frontend/img/gold-coins.png" alt="" width="30" height="30">
                                 <span class="subscription_coins"><?php echo $ad['subscription_coins']; ?></span>                            
                                 <br>
-                                <button class="btn btn-success subscribe_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Redeem Now</button>
+                                <button class="btn btn-success subscribe_btn redeem_points_btn" type="button" data-ad_id="<?php echo $ad['id']; ?>">Redeem Now</button>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -284,7 +284,7 @@ $(document).ready(function(){
     });
     
     // subscribe ad
-    $(document).on('click', '.subscribe_btn', function(e){
+    $(document).on('click', '.redeem_points_btn', function(e){
         e.preventDefault();
         var subscribe_ad_id = $(this).data('ad_id');
         var ad_name = $.trim($('.ad_name_'+subscribe_ad_id).html());

@@ -382,16 +382,17 @@ class Site extends CI_Controller {
 	
 	public function home()	{
 		if($this->session->userdata('user_logged_in')){
-			$data['heroBanners'] = $this->SITEDBAPI->getPublishedHeroBanners($limit=6);
+			//$data['heroBanners'] = $this->SITEDBAPI->getPublishedHeroBanners($limit=6);
 			$data['pageBanners'] = $this->SITEDBAPI->getPublishedPageBanners($limit=6);
 		//	$data['pageBannersGIF'] = $this->SITEDBAPI->getPublishedPageBannersGIF($limit=3);
+                        //echo "<pre>"; print_r($data['pageBanners']); die;
 			
 			$freeGamesBanners = $this->SITEDBAPI->getPublishedFreeGames($limit=30);
                         $data['freeGames'] = $freeGamesBanners;
 			$data['freeGamesBanners'] = array_chunk($freeGamesBanners, 3, true);
 			
-			$miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
-			$data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
+			//$miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
+			//$data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
 			
 			//$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
 			$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=1, $limit=5);
@@ -400,11 +401,11 @@ class Site extends CI_Controller {
 			
 			
 			
-			$data['fullTournamentGamesBanners'] = $this->SITEDBAPI->getPublishedFullTournamentGames($limit=50);
+			//$data['fullTournamentGamesBanners'] = $this->SITEDBAPI->getPublishedFullTournamentGames($limit=50);
 			$data['popularGamesBanners'] = $this->SITEDBAPI->getPublishedPopularGames($limit=50);
 			$data['mostlyPlayedGamesBanners'] = $this->SITEDBAPI->getPublishedMostlyPlayedGames($limit=10);
 			
-			$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
+			//$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
                         
                         $all_ads = $this->SITEDBAPI->getAds($limit=100);
                         $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
@@ -558,6 +559,13 @@ class Site extends CI_Controller {
             redirect('redeemPoints');
         }
         
+    }
+    
+    public function getMiniGames() {
+        $miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
+        $data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
+        
+        $this->load->view('site/mini_games', $data);
     }
     
 }

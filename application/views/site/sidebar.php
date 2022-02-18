@@ -74,13 +74,13 @@ $user_coins = $this->session->userdata('user_coins');
         
         <div class="user_info_div pull-right">
             <?php if($sessionUserId !== 'unknown'){ ?>
-                    <a href="javascript(0);" data-toggle="modal" data-target="#updateProfileImage"> 
+                    <a href="#" data-toggle="modal" data-target="#updateProfileImage"> 
                             <span class="">
                                     <img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo $this->session->userdata('user_img') ?>" width="44">
                             </span>
                     </a>
             <?php } else { ?>
-                    <a href="javascript(0);" data-toggle="modal" data-target="#loginModal"> 
+                    <a href="#" data-toggle="modal" data-target="#loginModal"> 
                             <span class="">
                                     <img id="user-img" class="profile-picture menu-profile-picture" src="<?php echo base_url('uploads/site_users/default.png') ?>" width="44">
                             </span>

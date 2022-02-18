@@ -98,7 +98,6 @@ function getAdsDetail() {
 
 <!-- Spin And Win Wheel -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -180,18 +179,6 @@ function spin() {
         $('#spin_wheel_selected').html(SelectedItem);
         $('#redeem_now').attr('href', redeem_now_link);
         
-        /*
-        var msg = "You won free subscription for <a href='https://business.igpl.pro/'> " + SelectedItem + "</a>.";        
-        var htmlContent = document.createElement("div");
-        htmlContent.innerHTML = msg;
-        
-        swal({
-            title: "Congratulations",
-            content: htmlContent,
-            type: "success",
-            html: true,
-        });
-        */
     }, 5500);
     // delay
     setTimeout(function () {

@@ -295,8 +295,7 @@ class Admin extends CI_Controller {
 	//  **************************************   Partners  Section Ends **************************************//
 	//  **************************************   ***************************** **************************************//
 	
-	
-	
+		
 	
 	
 	//  **************************************   ***************************** **************************************//
@@ -344,9 +343,14 @@ class Admin extends CI_Controller {
 				$data[$key] = $val;
 			}	
 			
-			$data['game_desc'] = addcslashes(urlencode($_POST['game_desc']));
-			$data['game_tips'] = addcslashes(urlencode($_POST['game_tips']));
-			$data['game_how_to_play'] = addcslashes(urlencode($_POST['game_how_to_play']));
+			$data['game_desc'] = addslashes(urlencode($_POST['game_desc']));
+			$data['game_tips'] = addslashes(urlencode($_POST['game_tips']));
+			$data['game_how_to_play'] = addslashes(urlencode($_POST['game_how_to_play']));
+			
+			/*echo "<pre>";
+			print_r($data);
+			echo "</pre>";
+			die;  */
 			
 			if($id){				
 				$data['game_updated_on'] = time();
@@ -378,17 +382,23 @@ class Admin extends CI_Controller {
 		}
 	}
 	
+	############################ Update Game ###################################
+	
 	public function updatePartnerGame(){
 		$game_id = base64_decode($this->uri->segment(3));
 		foreach($_POST as $key=>$value)
 			$data[$key]= $value;
 			
-		$data['game_desc'] = addcslashes(urlencode($_POST['game_desc']));
-		$data['game_tips'] = addcslashes(urlencode($_POST['game_tips']));
-		$data['game_how_to_play'] = addcslashes(urlencode($_POST['game_how_to_play']));
+		$data['game_desc'] = addslashes(urlencode($_POST['game_desc']));
+		$data['game_tips'] = addslashes(urlencode($_POST['game_tips']));
+		$data['game_how_to_play'] = addslashes(urlencode($_POST['game_how_to_play']));
 		$data['game_updated_on'] = time();		
 		
-		$result = $this->ADMINDBAPI->updateGame($data ,$game_id);
+		
+		$result = $this->ADMINDBAPI->updateGame($data, $game_id);
+		
+		
+		
 		if($result){
 			$this->session->set_flashdata('success','Game information updated successfully. ');
 			redirect("Admin/Games");
@@ -398,6 +408,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	############################################################################
 	public function manageGamesImages($game_id){
 		if($this->session->userdata('admin_logged_in')){
 			$game_id = base64_decode($game_id);
@@ -414,9 +425,7 @@ class Admin extends CI_Controller {
 				$data['smallThumbBanner'] = $this->ADMINDBAPI->getGameImageByType($game_id, $type='5');
 				$data['horizontalThumbBanner'] = $this->ADMINDBAPI->getGameImageByType($game_id, $type='6');
 				$data['verticalThumbBanner'] = $this->ADMINDBAPI->getGameImageByType($game_id, $type='7');
-				// echo "<pre>";
-				// print_r($data);
-				// die();
+				
 				$this->load->view('admin/games_images_list', $data);	
 			} else {
 				$this->session->set_flashdata('error','Unable to get game images list. Please try again.');
@@ -427,7 +436,7 @@ class Admin extends CI_Controller {
 			redirect('Admin');
 		}
 	}
-
+	
 	// *****************************  Hero Banner Upload Starts  **************************  //
 							
 	public function uploadHeroBanner(){
@@ -473,8 +482,7 @@ class Admin extends CI_Controller {
 			}
 		}
     }
-
-
+	
 	public function uploadHeroBannerGIF(){
 		if(!empty($_FILES['hero_banner_gif']['name'])){
 			$config['upload_path'] = 'uploads/content/';
@@ -517,8 +525,6 @@ class Admin extends CI_Controller {
 			}
 		}
     }
-
-	
 	// *****************************  Hero Banner Ends  **************************  //
 	
 	
@@ -1013,7 +1019,7 @@ class Admin extends CI_Controller {
 			}
 		}
     }
-
+	
 	public function uploadVerticalThumbGIF(){
 		if(!empty($_FILES['vertical_thumb_banner_gif']['name'])){
 			$config['upload_path'] = 'uploads/content/';
@@ -1057,8 +1063,6 @@ class Admin extends CI_Controller {
 			}
 		}
     }
-
-
 	// *****************************  Vertical Thumbnail  Banner Ends  **************************  //
 	
 	
@@ -1086,7 +1090,7 @@ class Admin extends CI_Controller {
 			redirect('Admin');
 		}
 	}
-
+	
 	public function deleteGame($id){
 		if($this->session->userdata('admin_logged_in')){
 			$id = base64_decode($id);
@@ -1104,15 +1108,12 @@ class Admin extends CI_Controller {
 			redirect('Admin');
 		}
 	}
-
 	
 	
 	
 	//  **************************************   ***************************** **************************************//
 	//  **************************************   Games  Section Ends **************************************//
 	//  **************************************   ***************************** **************************************//
-	
-	
 	
 	
 	
@@ -1141,7 +1142,7 @@ class Admin extends CI_Controller {
 		}
 	}
 	
-	public function updateTournament($id=''){ 
+	public function updateTournament($id=''){
 		$id=base64_decode($id);
 		$data['partners'] = $this->ADMINDBAPI->getPartnersList();
 		$data['info'] = $this->ADMINDBAPI->getTournamentInfo($id);
@@ -1440,176 +1441,7 @@ class Admin extends CI_Controller {
 	//  **************************************   Tournaments  Section Ends **************************************//
 	//  **************************************   ***************************** **************************************//
 	
-    
-    // Manage Advertisements
-    public function getAdvertisements(){
-        if($this->session->userdata('admin_logged_in')){
-            $data['list'] = $this->ADMINDBAPI->getAdsList();
-            $this->load->view('admin/ads_list', $data);	
-        } 
-        else{
-            $this->session->set_flashdata('error','Login to Access Your Account.');
-            redirect('Admin');
-        }
-    }
-    
-    public function editAdvertisement($id=''){
-        $id=base64_decode($id);
-        $data['info'] = $this->ADMINDBAPI->getAdvertisementInfo($id);
-        $this->load->view('admin/ad_update', $data);	
-    }
-    
-    
-    public function saveAdvertisement($id =''){
-        if($this->session->userdata('admin_logged_in')) {
-            $id = base64_decode($id); 
-            foreach($_POST as $key=>$val){
-                    $data[$key] = $val;
-            }
-            if($id){
-                $data['updated_on'] = time();
-                $this->db->where('id', $id);				
-                if($this->db->update('tbl_ads', $data)){
-                    $this->session->set_flashdata('success','Advertisement information updated successfully. ');
-                    redirect("Admin/Advertisements");
-                } 
-                else {
-                    $this->session->set_flashdata('error','Unable to update Advertisement information. Please try again.');
-                    redirect("Admin/Advertisements");
-                }					
-            } 
-            else {
-                $data['added_on'] = time();
-                $data['updated_on'] = time();
-                if($this->db->insert('tbl_ads', $data)){
-                    $this->session->set_flashdata('success','Advertisement information added successfully. ');
-                    redirect("Admin/Advertisements");
-                } 
-                else {
-                    $this->session->set_flashdata('error','Unable to add new Advertisement information. Please try again.');
-                    redirect("Admin/Advertisements");
-                }
-            }
-        } 
-        else{
-            $this->session->set_flashdata('error','Login to Access Your Account.');
-            redirect('Admin');
-        }
-    }
-    
-    
-    public function manageAdvertisementImages($id){
-        if($this->session->userdata('admin_logged_in')) {
-            $id = base64_decode($id);
-            if(!empty($id)){
-                $data['adInfo'] = $this->ADMINDBAPI->getAdvertisementInfo($id);
-                $data['adImages'] = $this->ADMINDBAPI->getAdvertisementImages($id);
-                $data['ad_id'] = $id;
-                //echo "<pre>"; print_r($data); die;
-                //Make a list of array to show default files in dropify
-                if($data['adImages']['img_type'] == 1) {
-                    $data['heroBanner'] = [
-                        'img_link' => $data['adImages']['img_link'],
-                        'img_gif' => $data['adImages']['img_gif']
-                    ];
-                    $data['verticalBanner'] = [];
-                }
-                else if($data['adImages']['img_type'] == 2) {
-                    $data['heroBanner'] = [];
-                    $data['verticalBanner'] = [
-                        'img_link' => $data['adImages']['img_link'],
-                        'img_gif' => $data['adImages']['img_gif']
-                    ];
-                }
-                $this->load->view('admin/ad_images_list', $data);	
-            } 
-            else {
-                $this->session->set_flashdata('error','Unable to get game images list. Please try again.');
-                redirect("Admin/Games");
-            }
-        } 
-        else {
-            $this->session->set_flashdata('error','Login to Access Your Account.');
-            redirect('Admin');
-        }
-    }
 	
-    
-    public function saveAdvertisementImage() { 
-            //echo "<pre>"; print_r($_POST); print_r($_FILES); die;
-            $ad_id = $_POST['ad_id'];
-            $type = $_POST['type'];
-            $img_type = $_POST['img_type'];
-            $config['upload_path'] = 'uploads/ads/';
-            $config['allowed_types'] = (($img_type == 'normal') ? 'jpeg|jpg|png' : 'gif|GIF');
-            $config['max_width'] = 580;
-            $config['max_height'] = 270;
-            $config['max_size'] = '500';
-            $config['encrypt_name'] = TRUE;
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('ad_image')) { echo 'if'; //die;
-                $error = array('error' => $this->upload->display_errors());
-                echo "<pre>"; print_r($error); die;
-            } 
-            else {
-                $arr_image = array('upload_data' => $this->upload->data());
-                $fileName = $arr_image['upload_data']['file_name'];
-                                
-                if($img_type == 'normal') {
-                    $dataFile['img_link'] = $fileName;
-                }
-                else if($img_type == 'gif') {
-                    $dataFile['img_gif'] = $fileName;
-                }
-                
-                // Check for image is already uploaded or not
-                $checkAdvertisementImageCount = $this->ADMINDBAPI->checkAdvertisementImageExists($ad_id, $type);
-                //print_r($checkAdvertisementImageCount); die;
-                
-                //echo"<pre>"; print_r($dataFile); die;
-                
-                if($checkAdvertisementImageCount == 0) {
-                    $dataFile['ad_id'] = $ad_id;
-                    $dataFile['img_type'] = $type;   // 1=HeroBanner  2=VerticalBanner 
-                    $dataFile['created_at'] = date('Y-m-d h:i:s');
-                    $dataFile['updated_at'] = date('Y-m-d h:i:s');
-                    $this->db->insert('tbl_ads_images', $dataFile);
-                } 
-                else {
-                    $dataFile['updated_at'] = date('Y-m-d h:i:s');
-                    
-                    $this->db->where('ad_id', $ad_id);
-                    $this->db->where('img_type', $type);
-                    $this->db->update('tbl_ads_images', $dataFile);
-                }
-            }
-    }
-    
-    public function deleteAdvertisementImage(){
-        if($this->session->userdata('admin_logged_in')){
-            $id = $_POST['adId'];
-            $type = $_POST['type'];
-            $imgType = $_POST['imgType'];
-
-            if($imgType == 'gif'){
-                $dataUpdate['img_gif'] = null;
-            } 
-            else {
-                $dataUpdate['img_link'] = null;
-            }
-            $this->db->where('ad_id', $id);
-            $this->db->where('img_type', $type);
-            if($this->db->update('tbl_ads_images', $dataUpdate)) {
-                echo "success";
-            } 
-            else {
-                echo "error";
-            }
-        } 
-        else {
-            $this->session->set_flashdata('error','Login to Access Your Account.');
-            redirect('Admin');
-        }
-    }
-
+	
+	
 }

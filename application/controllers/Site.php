@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ob_start();
+
+error_reporting(1);
+ini_set('display_errors', 1);
 class Site extends CI_Controller {
 	
 	
@@ -23,39 +26,35 @@ class Site extends CI_Controller {
 	}
 	
 	public function index(){
-		$user_msisdn=''; 
-                
-                $guest_user_number = '9900000078';
-                $user_number = (isset($_GET['number']) && !empty($_GET['number'])) ? $_GET['number'] : $guest_user_number;
-                
-		if(!empty($user_number)){
-			if($user_number != 'UNKNOWN' && $user_number != 'unknown' ){
-                            $phone = $user_number;
+		
+		$user_msisdn='';
+		if(isset($_GET['number']) && !empty($_GET['number'])){
+			if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' ){
+				$phone = $_GET['number'];
 				$otp = rand(111111, 999999);
-                                
+				
 				//check phone already registered or not
 				$rsPhone = $this->SITEDBAPI->checkRegisteredPhone($phone); 
 				if($rsPhone['rows'] == 0){
 					
-                                        $userData['user_id'] = 'unknown';
-					$userData['user_logged_in'] = true;                                        
+					$userData['user_id'] = 'unknown';
+					$userData['user_logged_in'] = true;
 					$this->session->set_userdata($userData);
 					redirect('Home');
 					
 				} else {
 					
-                                    $rowUser = $rsPhone['result'];
-                                    //print_r($rowUser);
-                                    $userId = $rowUser['user_id'];
-                                    
-                                    $userInfo = $this->SITEDBAPI->getUserInformation($userId);                                    
-                                    $userData['user_id'] = $userInfo['user_id'];
-                                    $userData['user_phone'] = $userInfo['user_phone'];
-                                    $userData['user_img'] = $userInfo['user_img'];
-                                    $userData['user_coins'] = $userInfo['coins'];
-                                    $userData['user_logged_in'] = true;
-                                    $this->session->set_userdata($userData);
-                                    redirect('Home');
+					$rowUser = $rsPhone['result'];
+					//print_r($rowUser);
+					$userId = $rowUser['user_id'];
+					
+					$userInfo = $this->SITEDBAPI->getUserInformation($userId);
+					$userData['user_id'] = $userInfo['user_id'];
+					$userData['user_phone'] = $userInfo['user_phone'];
+					$userData['user_img'] = $userInfo['user_img'];
+					$userData['user_logged_in'] = true;
+					$this->session->set_userdata($userData);
+					redirect('Home');
 					
 				}
 			
@@ -67,9 +66,15 @@ class Site extends CI_Controller {
 			}
 			
 		} else {
-			// header("Location: http://jazzgame.igpl.pro/home/GetMDN?source=https://gamenow.com.pk/login.php");
-			 $url = "http://jazzgame.igpl.pro/home/GetMDN?source=".base_url();
-			 header("Location: $url");
+			
+
+			//	$url = "http://jazzgame.igpl.pro/home/GetMDN?source=".base_url();
+			// header("Location: $url");
+			
+			$userData['user_id'] = 'unknown';
+				$userData['user_logged_in'] = true;
+				$this->session->set_userdata($userData);
+				redirect('Home');
 		}
 	}
 	
@@ -150,14 +155,30 @@ class Site extends CI_Controller {
 	public function login(){
 		$user_msisdn='';
 		if(isset($_GET['number']) && !empty($_GET['number'])){
-                    if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' )
-                        $user_msisdn = 	$_GET['number'];
+			if($_GET['number'] != 'UNKNOWN' && $_GET['number'] != 'unknown' )
+				$user_msisdn = 	$_GET['number'];
 		} 
 		
 		$data['profileImages'] = $this->SITEDBAPI->getProfileImages();
 		$data['user_msisdn'] = $user_msisdn;
 		$this->load->view('site/login', $data);
 	}
+	
+	
+	public function liveFeed(){	
+		//$data['upFeed'] = 1;
+		//$this->load->view('site/live_feed');
+		
+		//update live feed data
+		$liveFeed = $this->db->query("SELECT * FROM tbl_live_feed_data where id = '1'")->row_array();
+		echo "<pre>";
+		print_r($liveFeed);
+		echo "</pre>";
+				
+		
+	}
+	
+	
 	
 	public function processLogin__1(){
 		$phone = $_POST['phone'];
@@ -266,15 +287,6 @@ class Site extends CI_Controller {
 			$userData['user_phone'] = $userInfo['user_phone'];
 			$userData['user_img'] = $userInfo['user_img'];
 			$userData['user_logged_in'] = true;
-                        
-                        // add coins on daily visit
-                        $daily_visit_coins = 100;
-                        $total_coins = $daily_visit_coins + $userInfo['coins'];
-                        $updateUser['coins'] = $total_coins;
-                        $this->db->where('user_id', $userId);
-                        $this->db->update('tbl_users', $updateUser);
-                        
-                        
 			$this->session->set_userdata($userData);
 			redirect('Home');
 			
@@ -322,12 +334,6 @@ class Site extends CI_Controller {
 			if($msg == 'success'){
 				$dataArray['user_id'] = $user_id;
 				$dataArray['userInfo'] = $this->SITEDBAPI->getUserInformation($_GET['accessId']);
-                                echo "<pre>"; print_r($dataArray); die;
-                                // add coins on daily visit
-                                /*$this->db->where('user_id', $ad_id);
-                                $this->db->where('img_type', $type);
-                                $this->db->update('tbl_ads_images', $dataFile);
-                                */
 				$this->load->view('site/confirm_login', $dataArray);
 				
 			} else if($msg == 'error'){
@@ -380,73 +386,165 @@ class Site extends CI_Controller {
 	}
 	
 	
-	public function home()	{
+	public function home__1()	{
 		if($this->session->userdata('user_logged_in')){
-			//$data['heroBanners'] = $this->SITEDBAPI->getPublishedHeroBanners($limit=6);
+			$data['heroBanners'] = $this->SITEDBAPI->getPublishedHeroBanners($limit=6);
 			$data['pageBanners'] = $this->SITEDBAPI->getPublishedPageBanners($limit=6);
 		//	$data['pageBannersGIF'] = $this->SITEDBAPI->getPublishedPageBannersGIF($limit=3);
-                        //echo "<pre>"; print_r($data['pageBanners']); die;
 			
 			$freeGamesBanners = $this->SITEDBAPI->getPublishedFreeGames($limit=30);
-                        $data['freeGames'] = $freeGamesBanners;
 			$data['freeGamesBanners'] = array_chunk($freeGamesBanners, 3, true);
+			
+			$miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
+			$data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
+			
+			$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
+			$data['fullTournamentGamesBanners'] = $this->SITEDBAPI->getPublishedFullTournamentGames($limit=50);
+			$data['popularGamesBanners'] = $this->SITEDBAPI->getPublishedPopularGames($limit=50);
+			$data['mostlyPlayedGamesBanners'] = $this->SITEDBAPI->getPublishedMostlyPlayedGames($limit=10);
+			
+			$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
+			
+			$this->load->view('site/homepage', $data);
+		} else {
+			redirect();
+		}
+		
+	}
+	
+	public function home()	{
+		if($this->session->userdata('user_logged_in')){
+			
+			//update live feed data
+			$liveFeed = $this->db->query("SELECT feed_count FROM tbl_live_feed_data where id = '1'")->row_array();
+			$upData['feed_count'] = $liveFeed['feed_count']+1;
+			$upData['last_updated'] = gmdate('Y-m-d H:i:s');
+			$this->db->where('id','1');
+			$this->db->update('tbl_live_feed_data',$upData);
+                        
+                        $published_banners = $this->SITEDBAPI->getPublishedBanners();
+                        
+                        $i=0;
+                        $data['heroBanners'] = array_filter($published_banners, function($item) use($i) {
+                            if($i < 15) {
+                                return $item['img_type'] == '1';
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['pageBanners'] = array_filter($published_banners, function($item) use($i) {
+                            if($i < 15) {
+                                return $item['img_type'] == '2';
+                            }
+                            $i++;
+                        });
+                        
+                        
+                        $published_tournament_banners = $this->SITEDBAPI->getPublishedTournamentsBanners();
+                        
+                        $i=0;
+                        $data['tournamentGamesBanners'] = array_filter($published_tournament_banners, function($item) use($i) {
+                            if($i < 5) {
+                                return $item['tour_img_type'] == '1';
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['tournamentGamesThumbs'] = array_filter($published_tournament_banners, function($item) use($i) {
+                            if($i < 10) {
+                                return $item['tour_img_type'] == '2';
+                            }
+                            $i++;
+                        });
+                        
+                        $games = $this->SITEDBAPI->getGamesList();
+                        
+                        $i=0;
+                        $data['freeGamesBanners'] = array_filter($games, function($item) use($i) {
+                            if($i < 30) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '6' && $item['game_free_to_play'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $data['freeGamesBanners'] = array_chunk($freeGamesBanners, 3, true);
+                        
+                        $i=0;
+                        $data['miniGamesBanners'] = array_filter($games, function($item) use($i) {
+                            if($i < 30) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '5' && $item['game_mini_games'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
+                        
+                        
+                        $i=0;
+                        $data['tournamentGamesSpec'] = array_filter($games, function($item) use($i) {
+                            if($i < 50) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '7' && $item['game_tournament'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['fullTournamentGamesBanners'] = array_filter($games, function($item) use($i) {
+                            if($i < 50) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '2' && $item['game_tournament'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['popularGamesBanners'] = array_filter($games, function($item) use($i) {
+                            if($i < 50) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '3' && $item['game_popular'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['mostlyPlayedGamesBanners'] = array_filter($games, function($item) use($i) {
+                            if($i < 10) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '3' && $item['game_most_played'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+                        $i=0;
+                        $data['topChartGames'] = array_filter($games, function($item) use($i) {
+                            if($i < 100) {
+                                return ($item['game_status'] == '2' && $item['img_type'] == '5' && $item['game_top_chart'] == '1');
+                            }
+                            $i++;
+                        });
+                        
+		
+		
+			//$data['heroBanners'] = $this->SITEDBAPI->getPublishedHeroBanners($limit=15);
+			//$data['pageBanners'] = $this->SITEDBAPI->getPublishedPageBanners($limit=15);
+                        //$data['pageBannersGIF'] = $this->SITEDBAPI->getPublishedPageBannersGIF($limit=3);
+			
+			//$freeGamesBanners = $this->SITEDBAPI->getPublishedFreeGames($limit=30);
+			//$data['freeGamesBanners'] = array_chunk($freeGamesBanners, 3, true);
 			
 			//$miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
 			//$data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
 			
-			//$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
-			$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=1, $limit=5);
-			$data['tournamentGamesThumbs'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=2, $limit=10);
-			$data['tournamentGamesSpec'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
-			
+			//$data['tournamentGamesSpec'] = $this->SITEDBAPI->getPublishedTournamentGames($limit=50);
+			//$data['tournamentGamesBanners'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=1, $limit=5);
+			//$data['tournamentGamesThumbs'] = $this->SITEDBAPI->getPublishedTournamentsBanners($type=2, $limit=10);
 			
 			
 			//$data['fullTournamentGamesBanners'] = $this->SITEDBAPI->getPublishedFullTournamentGames($limit=50);
-			$data['popularGamesBanners'] = $this->SITEDBAPI->getPublishedPopularGames($limit=50);
-			$data['mostlyPlayedGamesBanners'] = $this->SITEDBAPI->getPublishedMostlyPlayedGames($limit=10);
+			//$data['popularGamesBanners'] = $this->SITEDBAPI->getPublishedPopularGames($limit=50);
+			//$data['mostlyPlayedGamesBanners'] = $this->SITEDBAPI->getPublishedMostlyPlayedGames($limit=10);
 			
 			//$data['topChartGames'] = $this->SITEDBAPI->getPublishedTopChartGames($limit=100);
-                        
-                        $all_ads = $this->SITEDBAPI->getAds($limit=100);
-                        $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
-                        $data['ads_list'] = [];
-                        //echo "<pre>"; print_r($all_ads_images); die;
-                        foreach($all_ads as $ad) {
-                            $data['ads_list'][$ad['id']] = $ad;
-                        }
-                        
-                        foreach($all_ads_images as $ad_images) {
-                            $data['ads_list'][$ad_images['ad_id']]['images'] = [
-                                'img_type' => $ad_images['img_type'],
-                                'img_link' => $ad_images['img_link'],
-                                'img_gif' => $ad_images['img_gif']
-                            ];
-                        }
-                       
-                        //echo "<pre>"; print_r($data['ads_list']); die;
-                        
-                        
-                        $data['freeTournament'] = $this->SITEDBAPI->getFreeTournaments($limit=1, $img_type=1);
-                        //echo "<pre>"; print_r($data['freeTournament']); die;
-                        
-                        $guest_user_number = '9900000078';
-                        $sessionUserId = $this->session->userdata('user_id');
-                        $sessionPhone = $this->session->userdata('user_phone');
-                        $sessionCoins = $this->session->userdata('user_coins');
-                        if($sessionPhone == $guest_user_number) {   
-                            // add coins on page refresh
-                            $page_refresh_coins = 10;
-                            $total_coins = $page_refresh_coins + $sessionCoins;
-                            $updateUser['coins'] = $total_coins;
-                            $this->db->where('user_id', $sessionUserId);
-                            $this->db->update('tbl_users', $updateUser);  
-
-                            $this->session->set_userdata('user_coins', $total_coins);
-                            $this->session->set_userdata('page_refresh_coins', $page_refresh_coins);
-                        }
-                        
-                        
-			$data['active_tab'] = 'home';
+			
 			$this->load->view('site/homepage', $data);
 		} else {
 			redirect();
@@ -499,73 +597,5 @@ class Site extends CI_Controller {
 		
 	}
 
-        
-    public function redeemPoints() {
-        if($this->session->userdata('user_logged_in')) {
-            $user_id = $this->session->userdata('user_id');
-            $userInfo = $this->SITEDBAPI->getUserInformation($user_id);
 
-            $data['total_coins'] = $userInfo['coins'];
-
-            $all_ads = $this->SITEDBAPI->getAds($limit=100);
-            $all_ads_images = $this->SITEDBAPI->getAdsImages($limit=100, '1');
-            $data['ads_list'] = [];
-            //echo "<pre>"; print_r($all_ads_images); die;
-            foreach($all_ads as $ad) {
-                $data['ads_list'][$ad['id']] = $ad;
-            }
-
-            foreach($all_ads_images as $ad_images) {
-                $data['ads_list'][$ad_images['ad_id']]['images'] = [
-                    'img_type' => $ad_images['img_type'],
-                    'img_link' => $ad_images['img_link'],
-                    'img_gif' => $ad_images['img_gif']
-                ];
-            }
-
-            //echo "<pre>"; print_r($data['ads_list']); die;
-            $data['active_tab'] = 'redeem_points';
-            $this->load->view('site/redeem_points', $data);
-        } 
-        else {
-            redirect();
-        }
-
-    }
-    
-    
-    public function subscribe_ad() {
-        //echo "<pre>"; print_r($_POST); die;
-        
-        $ad_id = $_POST['ad_id'];
-        $ad_info = $this->SITEDBAPI->getAdInfo($ad_id);
-        
-        $user_id = $this->session->userdata('user_id');
-        $userInfo = $this->SITEDBAPI->getUserInformation($user_id);
-
-        $user_coins = $userInfo['coins'];
-        
-        if($user_coins >= $ad_info['subscription_coins']) { //echo 'if'; die;
-            $update['coins'] = $user_coins - $ad_info['subscription_coins'];
-            
-            $this->db->where('user_id', $user_id);
-            $this->db->update('users', $update);
-            
-            $this->session->set_userdata('user_coins', $update['coins']);
-            redirect($ad_info['ad_link']);
-        }
-        else { //echo 'else'; die;
-            $this->session->set_flashdata("error","Sorry, You don't have enough coins.");
-            redirect('redeemPoints');
-        }
-        
-    }
-    
-    public function getMiniGames() {
-        $miniGamesBanners = $this->SITEDBAPI->getPublishedMiniGames($limit=30);
-        $data['miniGamesBanners'] = array_chunk($miniGamesBanners, 5, true);
-        
-        $this->load->view('site/mini_games', $data);
-    }
-    
 }

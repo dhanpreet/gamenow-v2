@@ -148,23 +148,6 @@
 									<span id="username_error_hint" class="text-danger mt-1"></span>
 								</div>
 							</div>
-                                                            
-                                                        <div class="row mb-4">
-								<label for="tournament_type" class="col-sm-4 col-form-label">Tournament Type</label>
-								<div class="col-sm-8">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-6">
-                                                                                    <input class="form-check-input" type="radio" name="tournament_type" id="tournament_type_radio_1" value="1"/>
-                                                                                    <label class="form-check-label" for="tournament_type_radio_1">Free</label>
-                                                                            </div>
-
-                                                                            <div class="col-sm-6">
-                                                                                    <input class="form-check-input" type="radio" name="tournament_type" id="tournament_type_radio_2" value="2"/>
-                                                                                    <label class="form-check-label" for="tournament_type_radio_2">Paid</label>
-                                                                            </div>										
-									</div>
-								</div>
-							</div>
 							
 							
 							<!-- <div class="row mb-4">

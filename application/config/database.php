@@ -77,8 +77,8 @@ $db['default'] = array(
 	'dsn'	=> '',
 	
 	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'geetika',
+	'password' => 'root',
 	'database' => 'gamenow_v2_db',	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'tbl_',

@@ -196,6 +196,7 @@ class Admin_model extends CI_Model {
 			'game_top_chart'=>0,
 			'game_tournament'=>0,
 			'game_most_played'=>0,
+			'game_popular'=>0
 		);
 		$this->db->where('game_id' , $game_id);
 		$this->db->update('tbl_partners_games' , $data2);
@@ -213,40 +214,8 @@ class Admin_model extends CI_Model {
 	  ##########################################################################
 	  ###################### Get Game Info For Game Update #####################
 	  ################################# END ####################################
-        
-        // Manage Ads
-        public function getAdsList(){
-            $this->db->select("*", FALSE);
-            $this->db->from('ads'); 
-            $this->db->where('status', 1);
-            return $this->db->get()->result_array();
-	}
-        
-        public function getAdvertisementInfo($id) {
-            $this->db->select('*' , FALSE);
-            $this->db->from('tbl_ads');
-            $this->db->where('id' , $id);
-            $result = $this->db->get()->row_array();
-            return $result;
-        }
-	        
-        public function getAdvertisementImages($id) {
-            $this->db->select('*' , FALSE);
-            $this->db->from('tbl_ads_images');
-            $this->db->where('ad_id' , $id);
-            $result = $this->db->get()->row_array();
-            return $result;
-        }
 	
-        function checkAdvertisementImageExists($ad_id, $type){
-            $this->db->select("*", FALSE);
-            $this->db->from('tbl_ads_images'); 
-            $this->db->where('ad_id', $ad_id);
-            $this->db->where('img_type', $type);
-            return $this->db->get()->num_rows();
-	}
-        
-        
+	
 }  
 
 ?>

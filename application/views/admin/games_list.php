@@ -134,6 +134,7 @@
 											<?php } else { ?>
 												<span class="badge bg-warning"> Inactive </span>
 											<?php } ?>
+											
 											</td>
 											<td width="10%" class="text-center">
 												<a href="<?php echo site_url('Admin/ManageImages/'.base64_encode($row['game_id'])) ?>" class="btn btn-sm btn-secondary radius-30">

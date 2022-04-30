@@ -76,6 +76,40 @@ class Site_model extends CI_Model {
 		}
 		
 	}
+        
+        
+        function getGamesList($img_type='', $limit=''){            
+            $this->db->select("game_id, game_name, game_category, game_play_link, img_link, img_gif_link", FALSE);
+            $this->db->from('partners_games'); 
+            $this->db->join('partners_games_images', 'partners_games_images.img_game_id=partners_games.game_id', 'left');  
+            if(!empty($img_type)) {
+                $this->db->where('img_type', $img_type);
+            }            
+            //$this->db->where('game_status', '2');  // 0=AddedOnly  1=Approved  2=Published  3=Reject  4=Inactive
+            $this->db->group_by('partners_games.game_id');
+            $this->db->order_by('partners_games.game_id','RANDOM');
+            if(!empty($limit)) {
+                $this->db->limit($limit);
+            }            
+            return $this->db->get()->result_array();
+            
+	}
+        
+        function getPublishedBanners($img_type='', $limit=''){
+            $this->db->select("game_id, game_name, game_category, game_play_link, img_link, img_gif_link", FALSE);
+            $this->db->from('partners_games_images'); 
+            $this->db->join('partners_games', 'partners_games.game_id=partners_games_images.img_game_id', 'left');  
+            if(!empty($type)) {
+                $this->db->where('img_type', $img_type);
+            }
+            $this->db->where('game_status', '2');  // 0=AddedOnly  1=Approved  2=Published  3=Reject  4=Inactive
+            $this->db->where('game_top_banner', '1');  
+            $this->db->order_by('partners_games_images.img_game_id','RANDOM');
+            if(!empty($limit)) {
+                $this->db->limit($limit);
+            }            
+            return $this->db->get()->result_array();
+	}
 
 
 
@@ -139,38 +173,6 @@ class Site_model extends CI_Model {
 	}
 	
 
-	function getPublishedTournamentGames__old($limit){
-		$img_types = array('7');  // 1=HeroBanner  2=PageBanner 3=LargThumb  4=MediumThumb  5=SmallThumb  6=HorizontalThumb  7=VerticleThumb  
-		$this->db->select("game_id, game_name, game_category, game_play_link, img_link, img_gif_link", FALSE);
-        $this->db->from('partners_games'); 
-		$this->db->join('partners_games_images', 'partners_games_images.img_game_id=partners_games.game_id', 'left');  
-		$this->db->where_in('img_type', $img_types);
-		$this->db->where('game_tournament', '1');  
-		$this->db->where('game_status', '2');  // 0=AddedOnly  1=Approved  2=Published  3=Reject  4=Inactive
-		$this->db->group_by('partners_games.game_id');
-		$this->db->order_by('partners_games.game_id','RANDOM');
-		$this->db->limit($limit);
-        return $this->db->get()->result_array();
-	}
-	
-	
-	function getPublishedTournamentsBanners($type, $limit){
-		$today = date('Y-m-d');
-		$this->db->select("*", FALSE);
-        $this->db->from('partners_tournaments'); 
-		$this->db->join('tournament_images', 'tournament_images.tour_img_tournament_id=partners_tournaments.tournament_id', 'left');  
-		$this->db->where('tour_img_type', $type);  //    1=Full Banner  2=Thumbnail 
-		$this->db->where('tournament_status', '2');  //    2=Published  3=Reject
-                $this->db->where('tournament_type', '2');  //    1=Free  2=Paid 
-		$this->db->where("tournament_start_date <= '$today' ");  
-		$this->db->where("tournament_end_date >= '$today' ");  
-		$this->db->group_by('partners_tournaments.tournament_id');
-		$this->db->order_by('partners_tournaments.tournament_id','RANDOM');
-		
-		$this->db->limit($limit);
-        return $this->db->get()->result_array();
-	}
-	
 	function getPublishedTournamentGames($limit){
 		$img_types = array('7');  // 1=HeroBanner  2=PageBanner 3=LargThumb  4=MediumThumb  5=SmallThumb  6=HorizontalThumb  7=VerticleThumb  
 		$this->db->select("game_id, game_name, game_category, game_play_link, img_link, img_gif_link", FALSE);
@@ -184,6 +186,27 @@ class Site_model extends CI_Model {
 		$this->db->limit($limit);
         return $this->db->get()->result_array();
 	}
+	
+	
+	function getPublishedTournamentsBanners($type='', $limit=''){
+            $today = date('Y-m-d');
+            $this->db->select("*", FALSE);
+            $this->db->from('partners_tournaments'); 
+            $this->db->join('tournament_images', 'tournament_images.tour_img_tournament_id=partners_tournaments.tournament_id', 'left');  
+            if(!empty($type)) {
+                $this->db->where('tour_img_type', $type);  //    1=Full Banner  2=Thumbnail 
+            }            
+            $this->db->where('tournament_status', '2');  //    2=Published  3=Reject 
+            $this->db->where("tournament_start_date <= '$today' ");  
+            $this->db->where("tournament_end_date >= '$today' ");  
+            $this->db->group_by('partners_tournaments.tournament_id');
+            $this->db->order_by('partners_tournaments.tournament_id','RANDOM');
+	    if(!empty($limit)) {
+                $this->db->limit($limit);
+            }		
+            return $this->db->get()->result_array();
+	}
+	
 	
 	
 	function getPublishedFullTournamentGames($limit){
@@ -257,48 +280,7 @@ class Site_model extends CI_Model {
         return $this->db->get()->result_array();
 	}
 	
-	// Manage Ads
-        public function getAds($limit){
-            $this->db->select("*", FALSE);
-            $this->db->from('ads'); 
-            $this->db->where('status', 1);
-            $this->db->limit($limit);
-            return $this->db->get()->result_array();
-        }
-        
-        public function getAdInfo($ad_id){
-            $this->db->select('*' , FALSE);
-            $this->db->from('ads');
-            $this->db->where('id' , $ad_id);
-            $result = $this->db->get()->row_array();
-            return $result;
-        }
-        
-        public function getAdsImages($limit, $img_type){
-            $this->db->select("*", FALSE);
-            $this->db->from('ads_images'); 
-            $this->db->where('img_type', $img_type);
-            $this->db->limit($limit);
-            return $this->db->get()->result_array();
-        }
-        
-        
-        function getFreeTournaments($limit, $img_type){
-            $today = date('Y-m-d');
-            $this->db->select("*", FALSE);
-            $this->db->from('partners_tournaments'); 
-            $this->db->join('tournament_images', 'tournament_images.tour_img_tournament_id=partners_tournaments.tournament_id', 'left');  
-            $this->db->where('tour_img_type', $img_type);  //    1=Full Banner  2=Thumbnail 
-            $this->db->where('tournament_type', '1');  //    1: Free, 2: Paid
-            $this->db->where("tournament_start_date <= '$today' ");  
-            $this->db->where("tournament_end_date >= '$today' ");  
-            $this->db->group_by('partners_tournaments.tournament_id');
-            $this->db->order_by('partners_tournaments.tournament_id','RANDOM');
-
-            $this->db->limit($limit);
-            return $this->db->get()->result_array();
-	}
-        
+	
 }  
 
 ?>
